@@ -55,7 +55,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
             data-interactive={joined ? undefined : ""}
             className={cx("sg-segment", !joined && "sg-pebble", joined && on && "sg-chip-surface")}
           >
-            {!joined && showCheck && on && <CheckIcon width={16} height={16} strokeWidth={2.6} />}
+            {!joined && showCheck && on && <CheckIcon width={14} height={14} strokeWidth={2.6} />}
             {o.icon}
             <span>{o.label}</span>
           </T.Item>

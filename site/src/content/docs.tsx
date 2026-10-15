@@ -138,12 +138,15 @@ export function App() {
             <tbody>
               {[
                 ["--sg-font, --sg-font-mono", "Typefaces"],
-                ["--sg-text-xs … --sg-text-lg", "Type scale"],
-                ["--sg-radius-sm … --sg-radius-full", "Corner radii (12, 18, 26, 32px, pill)"],
+                ["--sg-text-2xs … --sg-text-2xl", "Type scale (11, 12, 13, 14, 16, 18, 24px)"],
+                ["--sg-space-1 … --sg-space-8", "Spacing on a 4px grid"],
+                ["--sg-control-xs … --sg-control-lg", "Control heights shared by buttons, inputs, selects and segments (28, 32, 38, 44px)"],
+                ["--sg-icon-sm … --sg-icon-lg", "Icon sizes inside controls (14, 16, 18px)"],
+                ["--sg-radius-xs … --sg-radius-full", "Corner radii (6, 10, 12, 18, 24px, pill)"],
                 ["--sg-page", "Paper colour behind everything"],
                 ["--sg-ink, --sg-ink-muted, --sg-ink-faint", "Text colours"],
                 ["--sg-line", "Hairlines and borders"],
-                ["--sg-focus, --sg-focus-ring", "Keyboard focus"],
+                ["--sg-focus, --sg-focus-ring, --sg-invalid-ring", "Keyboard focus and error rings"],
                 ["--sg-chip, --sg-chip-shadow", "White chips marking active states"],
                 ["--sg-well, --sg-well-shadow", "Sunken inputs"],
                 ["--sg-shade, --sg-shade-alpha", "Colour and strength of cast shadows"],

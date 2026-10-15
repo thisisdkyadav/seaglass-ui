@@ -19,8 +19,8 @@
   --h: 220; --s: 14%; --l: 94%;
   --lift: 0%;
   /* light: fixed, up and to the left */
-  --sx: 5px; --sy: 15px; --blur: 14px;
-  --bx: 2.3px; --by: 5.5px;
+  --sx: 3px; --sy: 9px; --blur: 11px;
+  --bx: 2px; --by: 4.5px;
   --hx: 38%; --hy: 16%;
   --sg-r: var(--sg-radius-lg);
 
@@ -61,8 +61,8 @@
   background-blend-mode: soft-light, normal, normal, normal;
   box-shadow:
     /* rounded rim: lit edge milky-bright, far edge rolls into deeper colour */
-    inset var(--bx) var(--by) 10px -2px hsl(var(--h) 100% 98% / .9),
-    inset calc(var(--bx) * -1.4) calc(var(--by) * -1.4) 12px -2px hsl(var(--h) var(--s) calc(var(--l) - 22%) / .5),
+    inset var(--bx) var(--by) 8px -2px hsl(var(--h) 100% 98% / .9),
+    inset calc(var(--bx) * -1.4) calc(var(--by) * -1.4) 10px -2px hsl(var(--h) var(--s) calc(var(--l) - 22%) / .5),
     /* bright lip at the base */
     inset 0 -3px 3px -2px hsl(calc(var(--h) - 18) 100% 96% / .9);
   filter: blur(1.2px);
@@ -84,9 +84,9 @@
 
 /* depth: smaller pebbles cast shorter shadows and have thinner rims,
    so everything appears to rest at the same height above the page */
-.sg-pebble[data-depth="md"] { --sx: 3.5px; --sy: 10px; --blur: 11px; --bx: 2.2px; --by: 4.5px; }
-.sg-pebble[data-depth="sm"] { --sx: 2.3px; --sy: 6.5px; --blur: 8px;  --bx: 1.6px; --by: 3.2px; }
-.sg-pebble[data-depth="xs"] { --sx: 1.5px; --sy: 4px;   --blur: 5px;  --bx: 1.2px; --by: 2.4px; }
+.sg-pebble[data-depth="md"] { --sx: 2.2px; --sy: 6px;   --blur: 8px;  --bx: 1.8px; --by: 3.6px; }
+.sg-pebble[data-depth="sm"] { --sx: 1.6px; --sy: 4.5px; --blur: 6px;  --bx: 1.4px; --by: 2.8px; }
+.sg-pebble[data-depth="xs"] { --sx: 1.1px; --sy: 3px;   --blur: 4px;  --bx: 1.1px; --by: 2.2px; }
 .sg-pebble[data-depth="sm"]::after, .sg-pebble[data-depth="xs"]::after { inset: 1px; }
 
 /* interactive pebbles lift on hover and sink when pressed */
@@ -94,7 +94,7 @@
 .sg-pebble[data-interactive]:hover:not(:disabled, [data-disabled]) { --lift: 1.5%; transform: translateY(-1px); }
 .sg-pebble[data-interactive]:active:not(:disabled, [data-disabled]) {
   transform: translateY(1.5px) scale(.99);
-  --sx: 2px; --sy: 5px; --blur: 7px;
+  --sx: 1px; --sy: 3px; --blur: 4px;
   transition-duration: .08s;
 }
 .sg-pebble:is(:disabled, [data-disabled]) { opacity: .55; cursor: not-allowed; filter: saturate(.6); }

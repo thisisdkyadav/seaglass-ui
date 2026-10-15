@@ -20,7 +20,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Ch
   const box = (
     <C.Root ref={ref} data-tone={tone} className={cx("sg-checkbox", !label && className)} {...rest} {...control}>
       <C.Indicator className="sg-checkbox-indicator" forceMount>
-        {rest.checked === "indeterminate" ? <MinusIcon width={14} height={14} strokeWidth={3} /> : <CheckIcon width={15} height={15} strokeWidth={3} />}
+        {rest.checked === "indeterminate" ? <MinusIcon width={12} height={12} strokeWidth={3} /> : <CheckIcon width={13} height={13} strokeWidth={3} />}
       </C.Indicator>
     </C.Root>
   );

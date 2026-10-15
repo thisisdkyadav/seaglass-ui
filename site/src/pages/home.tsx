@@ -17,7 +17,7 @@ export function Home() {
   return (
     <div className="site-home">
       <header className="site-home-header">
-        <Link to="/" className="site-brand" aria-label="Sea Glass UI home"><Logo size={40} /><b>Sea Glass UI</b></Link>
+        <Link to="/" className="site-brand" aria-label="Sea Glass UI home"><Logo size={32} /><b>Sea Glass UI</b></Link>
         <nav className="site-home-nav" aria-label="Main">
           <Link to="/docs/introduction">Docs</Link>
           <Link to="/components">Components</Link>
@@ -80,7 +80,7 @@ export function Home() {
       </main>
 
       <footer className="site-home-footer">
-        <span><Logo size={28} /> Sea Glass UI</span>
+        <span><Logo size={24} /> Sea Glass UI</span>
         <nav aria-label="Footer">
           <Link to="/docs/introduction">Docs</Link>
           <Link to="/components">Components</Link>

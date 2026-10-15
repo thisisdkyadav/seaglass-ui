@@ -82,7 +82,7 @@ Hotkeys skip text fields unless they ask not to.
 ## Theming
 
 ```css
-:root { --sg-font: "Inter", sans-serif; --sg-radius-lg: 22px; --sg-focus: hsl(160 60% 40%); }
+:root { --sg-font: "Inter", sans-serif; --sg-radius-lg: 16px; --sg-control-md: 36px; --sg-focus: hsl(160 60% 40%); }
 .my-brand { --h: 200; --s: 70%; --l: 84%; }   /* any pebble, any tint */
 ```
 

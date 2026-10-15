@@ -697,7 +697,7 @@ export const registry: Entry[] = [
           { name: "hotkeys", type: "string[] | false", default: `["[", "mod+b"]`, description: "Toggle the rail." },
           { name: "searchHotkey", type: "string | false", default: `"/"`, description: "Focus the search." },
           { name: "mobileBreakpoint", type: "number", default: "900", description: "Below this width it becomes a drawer." },
-          { name: "defaultWidth · minWidth · maxWidth", type: "number", default: "288 · 220 · 420", description: "Expanded width in px." },
+          { name: "defaultWidth · minWidth · maxWidth", type: "number", default: "264 · 220 · 420", description: "Expanded width in px." },
           { name: "defaultOpen", type: "string[]", description: "Group ids open on first visit." },
         ],
       },

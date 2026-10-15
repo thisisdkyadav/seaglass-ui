@@ -92,7 +92,7 @@ export interface SidebarProviderProps extends HTMLAttributes<HTMLDivElement> {
   searchHotkey?: string | false;
   /** Below this width the sidebar becomes a drawer. Default 900. */
   mobileBreakpoint?: number;
-  /** Expanded width in px. Default 288. Drag the edge to resize when resizable. */
+  /** Expanded width in px. Default 264. Drag the edge to resize when resizable. */
   defaultWidth?: number;
   minWidth?: number;
   maxWidth?: number;
@@ -103,7 +103,7 @@ export interface SidebarProviderProps extends HTMLAttributes<HTMLDivElement> {
 export function SidebarProvider({
   defaultCollapsed = false, collapsed: collapsedProp, onCollapsedChange, storageKey = "sg-sidebar",
   hotkeys = ["[", "mod+b"], searchHotkey = "/", mobileBreakpoint = 900,
-  defaultWidth = 288, minWidth = 220, maxWidth = 420, defaultOpen = [],
+  defaultWidth = 264, minWidth = 220, maxWidth = 420, defaultOpen = [],
   className, style, children, ...rest
 }: SidebarProviderProps) {
   const k = storageKey || undefined;
@@ -265,7 +265,7 @@ export const SidebarTrigger = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLB
           className={cx("sg-sidebar-trigger", variant === "pebble" && "sg-pebble", className)}
           {...rest}
         >
-          {s.isMobile ? <MenuIcon width={20} height={20} /> : <PanelLeft width={20} height={20} />}
+          {s.isMobile ? <MenuIcon width={18} height={18} /> : <PanelLeft width={18} height={18} />}
         </button>
       </T.Trigger>
       <T.Portal>
@@ -282,14 +282,14 @@ export function SidebarSearch({ placeholder = "Jump to…", className }: { place
     return (
       <RailTip label="Search" shortcut="/">
         <button type="button" className={cx("sg-sidebar-search-rail sg-well", className)} aria-label="Search navigation" onClick={s.focusSearch}>
-          <SearchIcon width={19} height={19} />
+          <SearchIcon width={18} height={18} />
         </button>
       </RailTip>
     );
   }
   return (
     <label className={cx("sg-sidebar-search sg-well", className)}>
-      <SearchIcon width={18} height={18} className="sg-sidebar-search-icon" />
+      <SearchIcon width={16} height={16} className="sg-sidebar-search-icon" />
       <input
         ref={s.searchRef}
         type="search"
@@ -405,7 +405,7 @@ export function SidebarNav({ sections, activeId, onNavigate, renderLink, classNa
             {sec.title && (s.collapsed ? <div className="sg-nav-rule" role="separator" aria-label={sec.title} /> : (
               foldable ? (
                 <button type="button" className="sg-nav-title" aria-expanded={!folded} onClick={() => s.setOpen("§" + sec.id, !folded)}>
-                  <span>{sec.title}</span><ChevronDown className="sg-nav-title-chevron" width={16} height={16} />
+                  <span>{sec.title}</span><ChevronDown className="sg-nav-title-chevron" width={14} height={14} />
                 </button>
               ) : <div className="sg-nav-title">{sec.title}</div>
             ))}
@@ -481,7 +481,7 @@ function NavNode({ item, depth, activeId, trail, q, go, renderLink }: NodeProps)
         }}
       >
         {lead}<span className="sg-nav-label">{item.label}</span>{tail}
-        <ChevronRight className="sg-nav-chevron" width={16} height={16} />
+        <ChevronRight className="sg-nav-chevron" width={14} height={14} />
       </button>
       <div className="sg-fold" data-open={isOpen ? "" : undefined} data-folded={isOpen ? undefined : ""}>
         <ul className="sg-nav-list sg-nav-sub" role="list">

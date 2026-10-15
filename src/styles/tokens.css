@@ -8,16 +8,43 @@
   /* type */
   --sg-font: "Outfit", "Google Sans", Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
   --sg-font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
-  --sg-text-xs: .75rem;
-  --sg-text-sm: .875rem;
-  --sg-text-md: .95rem;
-  --sg-text-lg: 1.1rem;
+  --sg-text-2xs: .6875rem;  /* 11px  counts, tags */
+  --sg-text-xs: .75rem;     /* 12px  badges, captions, overlines */
+  --sg-text-sm: .8125rem;   /* 13px  secondary text, small controls */
+  --sg-text-md: .875rem;    /* 14px  body, controls */
+  --sg-text-lg: 1rem;       /* 16px  large controls, card titles */
+  --sg-text-xl: 1.125rem;   /* 18px  dialog titles */
+  --sg-text-2xl: 1.5rem;    /* 24px  stat values */
+  --sg-leading: 1.5;
+  --sg-weight-medium: 500;
+  --sg-weight-strong: 600;
+
+  /* spacing: a 4px grid */
+  --sg-space-1: 4px;
+  --sg-space-2: 8px;
+  --sg-space-3: 12px;
+  --sg-space-4: 16px;
+  --sg-space-5: 20px;
+  --sg-space-6: 24px;
+  --sg-space-8: 32px;
+
+  /* control heights: buttons, inputs, selects, segments share them */
+  --sg-control-xs: 28px;
+  --sg-control-sm: 32px;
+  --sg-control-md: 38px;
+  --sg-control-lg: 44px;
+
+  /* icons inside controls */
+  --sg-icon-sm: 14px;
+  --sg-icon-md: 16px;
+  --sg-icon-lg: 18px;
 
   /* shape */
-  --sg-radius-sm: 12px;
-  --sg-radius-md: 18px;
-  --sg-radius-lg: 26px;
-  --sg-radius-xl: 32px;
+  --sg-radius-xs: 6px;      /* kbd, small chips */
+  --sg-radius-sm: 10px;     /* small controls, menu rows */
+  --sg-radius-md: 12px;     /* controls */
+  --sg-radius-lg: 18px;     /* cards, popovers */
+  --sg-radius-xl: 24px;     /* dialogs, large cards */
   --sg-radius-full: 999px;
 
   /* paper and ink */
@@ -27,8 +54,9 @@
   --sg-ink-faint: #9aa0ad;
   --sg-line: rgb(60 70 90 / .1);
   --sg-hover: rgb(255 255 255 / .45);
-  --sg-focus: hsl(234 70% 60%);
-  --sg-focus-ring: 0 0 0 3px hsl(234 70% 75% / .55);
+  --sg-focus: hsl(234 62% 62%);
+  --sg-focus-ring: 0 0 0 1px hsl(234 60% 62% / .55), 0 0 0 4px hsl(234 80% 80% / .3);
+  --sg-invalid-ring: 0 0 0 1px hsl(358 60% 58% / .6), 0 0 0 4px hsl(358 80% 80% / .25);
 
   /* white chips that rest inside pebbles */
   --sg-chip: rgb(255 255 255 / .8);
