@@ -1,4 +1,4 @@
-import { Field, Input } from "seaglass-ui";
+import { Field, Input } from "seaglass";
 import { Search } from "lucide-react";
 
 export default function Adornments() {

@@ -1,4 +1,4 @@
-import { HoverCard, HoverCardTrigger, HoverCardContent, Avatar, Button } from "seaglass-ui";
+import { HoverCard, HoverCardTrigger, HoverCardContent, Avatar, Button } from "seaglass";
 
 export default function HoverCardExample() {
   return (

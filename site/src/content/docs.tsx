@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { Pebble, Badge } from "seaglass-ui";
+import { Pebble, Badge } from "seaglass";
 import { CodeBlock, C } from "../ui/code";
 import { Callout, KeysTable } from "../ui/tables";
 import { Example } from "../ui/example";
@@ -57,18 +57,18 @@ export const docs: Doc[] = [
       <>
         <H2 id="install">Install</H2>
         <p>React 18 or newer is required. Radix and cmdk come along as dependencies.</p>
-        <CodeBlock lang="sh" code="npm install seaglass-ui" />
-        <p className="site-muted">Using pnpm, yarn or bun? <C>pnpm add seaglass-ui</C> · <C>yarn add seaglass-ui</C> · <C>bun add seaglass-ui</C></p>
+        <CodeBlock lang="sh" code="npm install seaglass" />
+        <p className="site-muted">Using pnpm, yarn or bun? <C>pnpm add seaglass</C> · <C>yarn add seaglass</C> · <C>bun add seaglass</C></p>
         <H2 id="styles">Import the styles</H2>
         <p>Import the stylesheet once, at your app's entry point. It is about 68 kB of plain CSS inside <C>@layer seaglass</C>, so your own unlayered CSS always wins.</p>
-        <CodeBlock code={`import "seaglass-ui/styles.css";`} />
+        <CodeBlock code={`import "seaglass/styles.css";`} />
         <H2 id="providers">Add the providers</H2>
         <p>
           <C>ThemeProvider</C> handles light and dark, <C>TooltipProvider</C> shares tooltip timing and <C>Toaster</C> renders
           notifications. All three are optional, but most apps want them.
         </p>
-        <CodeBlock code={`import "seaglass-ui/styles.css";
-import { ThemeProvider, TooltipProvider, Toaster, Button, toast } from "seaglass-ui";
+        <CodeBlock code={`import "seaglass/styles.css";
+import { ThemeProvider, TooltipProvider, Toaster, Button, toast } from "seaglass";
 
 export function App() {
   return (
@@ -226,7 +226,7 @@ export function App() {
         ]} />
         <H2 id="own">Your own shortcuts</H2>
         <p>The same hook the components use is exported. <C>mod</C> means ⌘ on Apple devices and Ctrl elsewhere, and <C>Kbd</C> renders combos with the right symbols.</p>
-        <CodeBlock code={`import { useHotkeys, Kbd } from "seaglass-ui";
+        <CodeBlock code={`import { useHotkeys, Kbd } from "seaglass";
 
 useHotkeys("mod+s", save);
 useHotkeys(["j", "arrowdown"], next);

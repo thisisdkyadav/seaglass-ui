@@ -5,7 +5,7 @@ import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
   DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent, DropdownMenuRadioGroup, DropdownMenuRadioItem,
   CommandPalette, CommandGroup, CommandItem, useTheme, toast, type ThemeSetting,
-} from "seaglass-ui";
+} from "seaglass";
 import { sections, titles } from "./nav";
 import { Overview, Orders } from "./pages/dashboard";
 import { Foundations, Buttons } from "./pages/primitives";

@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "seaglass-ui";
+import { Button, ButtonGroup } from "seaglass";
 
 export default function Tones() {
   return (

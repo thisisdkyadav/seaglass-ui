@@ -1,4 +1,4 @@
-import { Pebble } from "seaglass-ui";
+import { Pebble } from "seaglass";
 
 const tones = ["clear", "periwinkle", "aqua", "sky", "seafoam", "mint", "lilac", "coral", "rose", "amber", "sand"] as const;
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pagination } from "seaglass-ui";
+import { Pagination } from "seaglass";
 
 export default function Basic() {
   const [page, setPage] = useState(4);

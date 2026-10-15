@@ -1,4 +1,4 @@
-import { Badge } from "seaglass-ui";
+import { Badge } from "seaglass";
 import { ExternalLink } from "lucide-react";
 import { DocsLayout, type TocItem } from "../layout";
 import { Pager } from "./pager";

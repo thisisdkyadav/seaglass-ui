@@ -1,4 +1,4 @@
-import { Popover, PopoverTrigger, PopoverContent, Button, Field, Input } from "seaglass-ui";
+import { Popover, PopoverTrigger, PopoverContent, Button, Field, Input } from "seaglass";
 import { Share2 } from "lucide-react";
 
 export default function Basic() {

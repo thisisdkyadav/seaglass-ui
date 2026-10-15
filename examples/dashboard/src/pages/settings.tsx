@@ -1,6 +1,6 @@
 import {
   Card, CardHeader, CardFooter, Tabs, TabsList, Tab, TabsContent, Field, Input, Select, Switch, Button, Avatar, Badge, Progress, Separator, toast,
-} from "seaglass-ui";
+} from "seaglass";
 import { team } from "../data";
 
 const I = (name: string) => <span className="ms">{name}</span>;

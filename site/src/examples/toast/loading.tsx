@@ -1,4 +1,4 @@
-import { Button, toast } from "seaglass-ui";
+import { Button, toast } from "seaglass";
 
 export default function Loading() {
   const exportOrders = () => {

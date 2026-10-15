@@ -1,4 +1,4 @@
-import { Stat } from "seaglass-ui";
+import { Stat } from "seaglass";
 import { Wallet, ShoppingBag, Users } from "lucide-react";
 
 // The arrow follows the number; the colour says whether it's good news.

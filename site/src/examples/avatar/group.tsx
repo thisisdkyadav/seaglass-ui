@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup } from "seaglass-ui";
+import { Avatar, AvatarGroup } from "seaglass";
 
 const people = ["Kai Nakamura", "Zara Okafor", "Ethan Brooks", "Maya Singh", "Oscar Lindqvist", "Lena Fischer"];
 

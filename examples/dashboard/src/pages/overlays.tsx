@@ -6,7 +6,7 @@ import {
   DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent, DropdownMenuRadioGroup, DropdownMenuRadioItem,
   ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator,
   Tooltip, Field, Input, Switch, Avatar, Kbd, toast, CommandPalette, CommandGroup, CommandItem,
-} from "seaglass-ui";
+} from "seaglass";
 
 const I = (name: string) => <span className="ms">{name}</span>;
 

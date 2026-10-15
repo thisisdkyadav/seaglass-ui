@@ -1,4 +1,4 @@
-import { IconButton, ButtonGroup, Tooltip } from "seaglass-ui";
+import { IconButton, ButtonGroup, Tooltip } from "seaglass";
 import { Pencil, Share2, Bookmark, Heart, MoreHorizontal } from "lucide-react";
 
 export default function IconButtons() {

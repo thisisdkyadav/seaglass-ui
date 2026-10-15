@@ -1,4 +1,4 @@
-import { Field, DatePicker } from "seaglass-ui";
+import { Field, DatePicker } from "seaglass";
 
 export default function DatePickerExample() {
   return (

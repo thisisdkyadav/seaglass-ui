@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Checkbox } from "seaglass-ui";
+import { Checkbox } from "seaglass";
 
 export default function Basic() {
   const [checked, setChecked] = useState(true);

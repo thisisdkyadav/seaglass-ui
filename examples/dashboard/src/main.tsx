@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "seaglass-ui/styles.css";
+import "seaglass/styles.css";
 import "./playground.css";
-import { ThemeProvider, Toaster, TooltipProvider } from "seaglass-ui";
+import { ThemeProvider, Toaster, TooltipProvider } from "seaglass";
 import { App } from "./app";
 
 createRoot(document.getElementById("root")!).render(

@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import {
   SidebarProvider, Sidebar, SidebarHeader, SidebarFooter, SidebarInset, SidebarTrigger, SidebarSearch, SidebarNav,
   SidebarButton, SidebarExpandedOnly, Breadcrumbs, useSidebar, Badge,
-} from "seaglass-ui";
+} from "seaglass";
 import { Link, navigate } from "./router";
 import { sections, VERSION } from "./content/nav";
 import { Logo, SearchButton, ThemeButton, GithubButton, useSearch } from "./chrome";

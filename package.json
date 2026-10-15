@@ -1,7 +1,26 @@
 {
-  "name": "seaglass-ui",
+  "name": "seaglass",
   "version": "0.1.0",
-  "description": "Sea Glass — a React component library of frosted, tumbled-glass pebbles.",
+  "description": "Sea Glass \u2014 a React component library of frosted, tumbled-glass pebbles.",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "design-system",
+    "radix",
+    "accessible",
+    "sea-glass"
+  ],
+  "author": "Devesh Yadav",
+  "license": "MIT",
+  "homepage": "https://github.com/thisisdkyadav/seaglass#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisdkyadav/seaglass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thisisdkyadav/seaglass/issues"
+  },
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -32,7 +51,8 @@
     "dev": "vite --config site/vite.config.ts",
     "build:site": "vite build --config site/vite.config.ts",
     "preview:site": "vite preview --config site/vite.config.ts",
-    "example:dashboard": "vite --config examples/dashboard/vite.config.ts"
+    "example:dashboard": "vite --config examples/dashboard/vite.config.ts",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -58,5 +78,7 @@
     "vite": "^8.3.4",
     "vitest": "^5.0.4"
   },
-  "license": "MIT"
+  "publishConfig": {
+    "access": "public"
+  }
 }

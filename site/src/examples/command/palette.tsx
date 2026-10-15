@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CommandPalette, CommandGroup, CommandItem, Button, Kbd, toast } from "seaglass-ui";
+import { CommandPalette, CommandGroup, CommandItem, Button, Kbd, toast } from "seaglass";
 import { FileText, Moon, UserPlus, Terminal } from "lucide-react";
 
 // CommandPalette opens with mod+k by default. This demo sets hotkey={false}

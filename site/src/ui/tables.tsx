@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Kbd, Badge } from "seaglass-ui";
+import { Kbd, Badge } from "seaglass";
 import type { PropGroup } from "../content/registry";
 
 export function PropsTable({ group }: { group: PropGroup }) {

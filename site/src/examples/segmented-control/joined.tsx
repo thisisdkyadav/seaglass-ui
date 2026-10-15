@@ -1,4 +1,4 @@
-import { SegmentedControl } from "seaglass-ui";
+import { SegmentedControl } from "seaglass";
 
 export default function Joined() {
   return (

@@ -1,10 +1,10 @@
-import type { NavSection } from "seaglass-ui";
+import type { NavSection } from "seaglass";
 import { BookOpen, Download, Palette, Moon, Keyboard, Waves, LayoutGrid } from "lucide-react";
 import { docs } from "./docs";
 import { registry, groups } from "./registry";
 
 /** Set this once the repository is public; the GitHub buttons stay hidden while it is empty. */
-export const REPO_URL = "";
+export const REPO_URL = "https://github.com/thisisdkyadav/seaglass";
 export const VERSION = "0.1.0";
 
 const docIcons: Record<string, React.ReactNode> = {

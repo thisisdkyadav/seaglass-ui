@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem } from "seaglass-ui";
+import { Accordion, AccordionItem } from "seaglass";
 import { Waves, Palette, Code } from "lucide-react";
 
 export default function Joined() {

@@ -1,4 +1,4 @@
-import { Avatar } from "seaglass-ui";
+import { Avatar } from "seaglass";
 
 export default function Sizes() {
   return (

@@ -20,8 +20,8 @@ export default defineConfig({
   plugins: [react(), spaFallback()],
   resolve: {
     alias: {
-      "seaglass-ui/styles.css": fileURLToPath(new URL("../src/styles/index.css", import.meta.url)),
-      "seaglass-ui": fileURLToPath(new URL("../src/index.ts", import.meta.url)),
+      "seaglass/styles.css": fileURLToPath(new URL("../src/styles/index.css", import.meta.url)),
+      "seaglass": fileURLToPath(new URL("../src/index.ts", import.meta.url)),
     },
   },
   server: { port: 5310 },

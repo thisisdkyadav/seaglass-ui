@@ -1,4 +1,4 @@
-import { Kbd } from "seaglass-ui";
+import { Kbd } from "seaglass";
 
 // "mod" renders as ⌘ on Mac and Ctrl elsewhere.
 export default function Combos() {

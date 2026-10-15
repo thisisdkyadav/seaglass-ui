@@ -1,6 +1,6 @@
 // Pieces shared by the home page header and the docs top bar.
 import { useState } from "react";
-import { Pebble, Button, IconButton, Kbd, Tooltip, CommandPalette, CommandGroup, CommandItem, useTheme } from "seaglass-ui";
+import { Pebble, Button, IconButton, Kbd, Tooltip, CommandPalette, CommandGroup, CommandItem, useTheme } from "seaglass";
 import { Search, Sun, Moon, FileText, Component, Contrast } from "lucide-react";
 import { navigate } from "./router";
 import { docs } from "./content/docs";

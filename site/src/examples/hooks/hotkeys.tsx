@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHotkeys, Kbd, Pebble } from "seaglass-ui";
+import { useHotkeys, Kbd, Pebble } from "seaglass";
 
 export default function Hotkeys() {
   const [count, setCount] = useState(0);

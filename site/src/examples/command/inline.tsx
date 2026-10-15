@@ -1,4 +1,4 @@
-import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, Pebble } from "seaglass-ui";
+import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, Pebble } from "seaglass";
 import { Calendar, Smile, Calculator, User, CreditCard, Settings } from "lucide-react";
 
 export default function Inline() {

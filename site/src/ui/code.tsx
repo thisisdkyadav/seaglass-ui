@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { highlight } from "sugar-high";
-import { IconButton, Tooltip, cx } from "seaglass-ui";
+import { IconButton, Tooltip, cx } from "seaglass";
 import { Check, Copy } from "lucide-react";
 
 export function CopyButton({ text, label = "Copy code" }: { text: string; label?: string }) {

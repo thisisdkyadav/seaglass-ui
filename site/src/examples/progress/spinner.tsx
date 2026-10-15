@@ -1,4 +1,4 @@
-import { Spinner } from "seaglass-ui";
+import { Spinner } from "seaglass";
 
 export default function Spinners() {
   return (

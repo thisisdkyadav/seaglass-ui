@@ -1,4 +1,4 @@
-import { Field, Textarea } from "seaglass-ui";
+import { Field, Textarea } from "seaglass";
 
 export default function TextareaExample() {
   return (

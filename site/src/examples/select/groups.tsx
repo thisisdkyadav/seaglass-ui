@@ -1,4 +1,4 @@
-import { Field, Select } from "seaglass-ui";
+import { Field, Select } from "seaglass";
 
 export default function Groups() {
   return (

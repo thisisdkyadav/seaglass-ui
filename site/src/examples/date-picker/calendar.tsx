@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Calendar } from "seaglass-ui";
+import { Calendar } from "seaglass";
 
 export default function CalendarExample() {
   const [date, setDate] = useState<Date | null>(new Date());

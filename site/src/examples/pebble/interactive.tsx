@@ -1,4 +1,4 @@
-import { Pebble } from "seaglass-ui";
+import { Pebble } from "seaglass";
 
 export default function Interactive() {
   return (

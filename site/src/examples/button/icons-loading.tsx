@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, ButtonGroup } from "seaglass-ui";
+import { Button, ButtonGroup } from "seaglass";
 import { Plus, ArrowRight, Trash2 } from "lucide-react";
 
 export default function IconsAndLoading() {

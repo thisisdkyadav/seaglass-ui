@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Field, Slider } from "seaglass-ui";
+import { Field, Slider } from "seaglass";
 
 export default function Range() {
   const [price, setPrice] = useState([20, 80]);

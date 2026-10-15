@@ -1,7 +1,7 @@
 import {
   Dialog, DialogTrigger, DialogContent, DialogHeader, DialogBody, DialogFooter, DialogClose,
   Button, Field, Input, Switch, toast,
-} from "seaglass-ui";
+} from "seaglass";
 import { Pencil } from "lucide-react";
 
 export default function Basic() {

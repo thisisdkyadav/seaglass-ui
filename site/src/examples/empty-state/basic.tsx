@@ -1,4 +1,4 @@
-import { EmptyState, Button } from "seaglass-ui";
+import { EmptyState, Button } from "seaglass";
 import { Package, Plus } from "lucide-react";
 
 export default function Basic() {

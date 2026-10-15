@@ -1,4 +1,4 @@
-import { Tabs, TabsList, Tab } from "seaglass-ui";
+import { Tabs, TabsList, Tab } from "seaglass";
 
 export default function Variants() {
   return (

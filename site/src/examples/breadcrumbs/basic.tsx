@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "seaglass-ui";
+import { Breadcrumbs } from "seaglass";
 
 export default function Basic() {
   return (

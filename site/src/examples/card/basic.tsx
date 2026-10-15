@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Button, Badge } from "seaglass-ui";
+import { Card, CardHeader, CardBody, CardFooter, Button, Badge } from "seaglass";
 import { Droplet } from "lucide-react";
 
 export default function Basic() {

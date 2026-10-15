@@ -1,4 +1,4 @@
-import { Pebble } from "seaglass-ui";
+import { Pebble } from "seaglass";
 
 // Any colour is one hue / saturation / lightness triple.
 // Body, rim, core, lip, shadow and text are all derived from it.

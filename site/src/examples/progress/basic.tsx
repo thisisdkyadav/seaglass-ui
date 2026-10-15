@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Progress } from "seaglass-ui";
+import { Progress } from "seaglass";
 
 export default function Basic() {
   const [value, setValue] = useState(20);

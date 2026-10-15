@@ -1,7 +1,7 @@
 import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator,
   DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent, Button,
-} from "seaglass-ui";
+} from "seaglass";
 import { ChevronDown, Copy, ClipboardPaste, PenLine, Share, Link, Mail, Trash2 } from "lucide-react";
 
 export default function Basic() {

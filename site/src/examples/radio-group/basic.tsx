@@ -1,4 +1,4 @@
-import { RadioGroup, Radio } from "seaglass-ui";
+import { RadioGroup, Radio } from "seaglass";
 
 export default function Basic() {
   return (

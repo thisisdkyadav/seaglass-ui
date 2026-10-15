@@ -1,4 +1,4 @@
-/* Docs-site styles. Components come from seaglass-ui; this is layout and prose. */
+/* Docs-site styles. Components come from seaglass; this is layout and prose. */
 :root {
   --site-max: 1240px;
   --site-gutter: clamp(16px, 4vw, 40px);

@@ -1,4 +1,4 @@
-import { Separator } from "seaglass-ui";
+import { Separator } from "seaglass";
 
 export default function Basic() {
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Field, Combobox } from "seaglass-ui";
+import { Field, Combobox } from "seaglass";
 
 export default function Multiple() {
   const [options, setOptions] = useState(["design", "launch", "marketing", "research", "urgent"].map((t) => ({ value: t, label: t })));

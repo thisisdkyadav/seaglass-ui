@@ -1,4 +1,4 @@
-import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "seaglass-ui";
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "seaglass";
 import { RefreshCw, Bookmark, Code } from "lucide-react";
 
 export default function Basic() {

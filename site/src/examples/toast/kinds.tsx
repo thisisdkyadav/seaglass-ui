@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, toast } from "seaglass-ui";
+import { Button, ButtonGroup, toast } from "seaglass";
 
 // Render <Toaster /> once near the root of your app, then call toast() from anywhere.
 export default function Kinds() {
