@@ -8,11 +8,11 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "seaglass-ui/styles.css": fileURLToPath(new URL("../src/styles/index.css", import.meta.url)),
-      "seaglass-ui": fileURLToPath(new URL("../src/index.ts", import.meta.url)),
+      "seaglass-ui/styles.css": fileURLToPath(new URL("../../src/styles/index.css", import.meta.url)),
+      "seaglass-ui": fileURLToPath(new URL("../../src/index.ts", import.meta.url)),
     },
   },
-  server: { port: 5310 },
-  preview: { port: 5310 },
+  server: { port: 5311 },
+  preview: { port: 5311 },
   build: { outDir: "dist", emptyOutDir: true },
 });

@@ -29,7 +29,8 @@
   },
   "include": [
     "src",
-    "playground/src",
+    "site/src",
+    "examples/dashboard/src",
     "tests"
   ]
 }
