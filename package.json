@@ -1,7 +1,7 @@
 {
   "name": "seaglass-ui",
   "version": "0.1.0",
-  "description": "Sea Glass \u2014 a React component library of frosted, tumbled-glass pebbles.",
+  "description": "Sea Glass — a React component library of frosted, tumbled-glass pebbles.",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -18,7 +18,9 @@
     "./styles.css": "./dist/seaglass.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "build": "npm run build:js && npm run build:types && npm run build:css",
@@ -48,10 +50,13 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "jsdom": "^29.1.1",
+    "lucide-react": "^1.40.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "sugar-high": "^2.6.0",
     "typescript": "5.9",
     "vite": "^8.3.4",
     "vitest": "^5.0.4"
-  }
+  },
+  "license": "MIT"
 }

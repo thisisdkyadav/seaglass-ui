@@ -16,11 +16,12 @@
 
 /* The lamp. A fixed pool of warm light at the top-left and a gentle
    fall-off towards the corners. Rendered by <ThemeProvider>; only
-   visible in dark. */
+   visible in dark. It sits behind the content (z-index -1) and in
+   front of the page colour on <body>, so it lights the paper, not the text. */
 .sg-lamp { display: none; }
 [data-sg-theme="dark"] .sg-lamp {
   display: block;
-  position: fixed; inset: 0; z-index: 0;
+  position: fixed; inset: 0; z-index: -1;
   pointer-events: none;
   background:
     radial-gradient(circle 620px at 30% 12%, rgb(255 238 205 / .55), rgb(255 230 190 / .18) 60%, transparent 100%),

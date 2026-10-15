@@ -2,7 +2,7 @@ import { render, screen, within, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import {
-  Button, Field, Input, DataTable, Calendar, SidebarProvider, Sidebar, SidebarNav, SidebarSearch, SidebarInset, useSidebar,
+  Button, AlertDialog, Field, Input, DataTable, Calendar, SidebarProvider, Sidebar, SidebarNav, SidebarSearch, SidebarInset, useSidebar,
   type Column, type NavSection,
 } from "../src";
 
@@ -129,5 +129,32 @@ describe("Sidebar", () => {
     expect(screen.getByText("Invoices")).toBeInTheDocument();
     await userEvent.keyboard("{Enter}");
     expect(onNav).toHaveBeenCalledWith("invoices");
+  });
+});
+
+describe("AlertDialog", () => {
+  const setup = (onConfirm: () => Promise<void>) =>
+    render(<AlertDialog trigger={<Button>Delete</Button>} title="Delete it?" confirmLabel="Delete forever" onConfirm={onConfirm} />);
+
+  it("stays open and busy until an async confirm resolves", async () => {
+    let resolve!: () => void;
+    setup(() => new Promise<void>((r) => { resolve = r; }));
+    await userEvent.click(screen.getByRole("button", { name: "Delete" }));
+    await userEvent.click(screen.getByRole("button", { name: "Delete forever" }));
+    expect(screen.getByRole("alertdialog")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Delete forever/ })).toHaveAttribute("aria-busy", "true");
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeDisabled();
+    await act(async () => resolve());
+    expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+  });
+
+  it("stays open when the confirm rejects", async () => {
+    let reject!: () => void;
+    setup(() => new Promise<void>((_, r) => { reject = () => r(new Error("nope")); }));
+    await userEvent.click(screen.getByRole("button", { name: "Delete" }));
+    await userEvent.click(screen.getByRole("button", { name: "Delete forever" }));
+    await act(async () => reject());
+    expect(screen.getByRole("alertdialog")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Delete forever" })).not.toHaveAttribute("aria-busy");
   });
 });

@@ -1,5 +1,5 @@
 /* ================= Field ================= */
-.sg-field { display: grid; gap: 7px; min-width: 0; }
+.sg-field { display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px; min-width: 0; }
 .sg-field[data-orientation="horizontal"] { grid-template-columns: auto 1fr; align-items: center; column-gap: 12px; }
 .sg-field[data-orientation="horizontal"] .sg-field-control { order: -1; }
 .sg-field-label, .sg-label { font-size: var(--sg-text-sm); font-weight: 600; }
@@ -11,7 +11,7 @@
 /* ================= Input (a sunken well) ================= */
 .sg-input {
   display: flex; align-items: center; gap: 8px;
-  height: 44px; padding: 0 14px;
+  min-width: 0; height: 44px; padding: 0 14px;
   border-radius: 14px;
   color: var(--sg-ink);
   transition: box-shadow var(--sg-dur);

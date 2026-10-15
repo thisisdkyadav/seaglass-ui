@@ -5,8 +5,7 @@ frosted, tumbled-glass pebble resting on white paper, lit by one fixed lamp at t
 For the full design rationale, see [DESIGN.md](DESIGN.md).
 
 ```bash
-npm run build && npm pack          # not on npm yet — install the tarball or link the folder
-npm i ../seaglass-ui/seaglass-ui-0.1.0.tgz
+npm install seaglass-ui          # once published; until then: npm run build && npm pack, and install the tarball
 ```
 
 ```tsx
@@ -90,11 +89,43 @@ Hotkeys skip text fields unless they ask not to.
 Dark mode is a warm, dim room lit by one lamp (`<html data-sg-theme="dark">`). `ThemeProvider`
 handles it, along with the system preference and persistence.
 
+## Repository layout
+
+| Path | What it is |
+| --- | --- |
+| `src/` | The library: components, hooks and the stylesheet (`src/styles`) |
+| `tests/` | Vitest + Testing Library |
+| `site/` | The public documentation website (Vite + React, built with the library itself) |
+| `site/src/content/registry.ts` | One entry per component page: summary, examples, props, keyboard, a11y notes |
+| `site/src/examples/<component>/*.tsx` | Live examples. Each file is rendered on its page and its source is shown verbatim |
+| `examples/dashboard/` | A full sample app (sales dashboard) built with the library |
+
+To document a new component: add example files under `site/src/examples/<slug>/`, then add an
+entry to `registry.ts`. The page, the sidebar link and the search entry are generated from it.
+
 ## Develop
 
 ```bash
-npm run dev        # playground: gallery + dashboard on http://localhost:5310
-npm test           # vitest + Testing Library
+npm run dev                 # docs site on http://localhost:5310
+npm run example:dashboard   # sample dashboard app on http://localhost:5311
+npm test                    # vitest + Testing Library
 npm run typecheck
-npm run build      # dist/: ESM, CJS, .d.ts and seaglass.css
+npm run build               # dist/: ESM, CJS, .d.ts and seaglass.css
 ```
+
+## Deploy the docs site
+
+```bash
+npm run build:site                              # site/dist, served from /
+SITE_BASE=/seaglass-ui/ npm run build:site      # served from a subpath (e.g. GitHub Pages project site)
+npm run preview:site                            # serve the build locally (set SITE_BASE here too)
+```
+
+`site/dist` is static files. Routes are real paths (`/components/button`), so the build also writes
+`404.html` as a copy of the app shell; GitHub Pages, Netlify, Cloudflare Pages and most static hosts
+serve it for unknown paths, and the client router takes over. Set `REPO_URL` in
+`site/src/content/nav.tsx` to show GitHub links once the repository is public.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

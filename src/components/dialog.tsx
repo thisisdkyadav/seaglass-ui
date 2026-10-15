@@ -1,4 +1,6 @@
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef, useState, type ReactNode } from "react";
+import { useControllableState } from "../hooks/use-controllable-state";
+import { Button } from "./button";
 import { Dialog as D, AlertDialog as A } from "radix-ui";
 import { cx } from "../lib/cx";
 import { XIcon } from "../lib/icons";
@@ -82,9 +84,22 @@ export interface AlertDialogProps {
   icon?: ReactNode;
 }
 
-export function AlertDialog({ open, defaultOpen, onOpenChange, trigger, title, description, confirmLabel = "Confirm", cancelLabel = "Cancel", tone = "primary", onConfirm, icon }: AlertDialogProps) {
+export function AlertDialog({ open: openProp, defaultOpen, onOpenChange, trigger, title, description, confirmLabel = "Confirm", cancelLabel = "Cancel", tone = "primary", onConfirm, icon }: AlertDialogProps) {
+  const [open, setOpen] = useControllableState({ value: openProp, defaultValue: defaultOpen ?? false, onChange: onOpenChange });
+  const [busy, setBusy] = useState(false);
+  // An async onConfirm keeps the dialog open, with a spinner on the button, until it settles.
+  // If it rejects, the dialog stays open so the user can retry (report the error in onConfirm).
+  const confirm = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const result = onConfirm?.();
+    if (result && typeof (result as Promise<void>).then === "function") {
+      setBusy(true);
+      try { await result; } catch { return; } finally { setBusy(false); }
+    }
+    setOpen(false);
+  };
   return (
-    <A.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
+    <A.Root open={open} onOpenChange={(o) => { if (!busy) setOpen(o); }}>
       {trigger && <A.Trigger asChild>{trigger}</A.Trigger>}
       <A.Portal>
         <A.Overlay className="sg-overlay" />
@@ -95,12 +110,8 @@ export function AlertDialog({ open, defaultOpen, onOpenChange, trigger, title, d
             {description && <A.Description className="sg-dialog-description">{description}</A.Description>}
           </div>
           <div className="sg-dialog-footer">
-            <A.Cancel className="sg-button sg-pebble" data-tone="clear" data-depth="md" data-interactive="" data-size="md" data-variant="pebble">
-              <span className="sg-button-label">{cancelLabel}</span>
-            </A.Cancel>
-            <A.Action className="sg-button sg-pebble" data-tone={tone === "danger" ? "danger" : "primary"} data-depth="md" data-interactive="" data-size="md" data-variant="pebble" onClick={() => onConfirm?.()}>
-              <span className="sg-button-label">{confirmLabel}</span>
-            </A.Action>
+            <A.Cancel asChild><Button tone="clear" disabled={busy}>{cancelLabel}</Button></A.Cancel>
+            <A.Action asChild><Button tone={tone === "danger" ? "danger" : "primary"} loading={busy} onClick={confirm}>{confirmLabel}</Button></A.Action>
           </div>
         </A.Content>
       </A.Portal>
