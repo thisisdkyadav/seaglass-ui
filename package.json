@@ -13,13 +13,13 @@
   ],
   "author": "Devesh Yadav",
   "license": "MIT",
-  "homepage": "https://github.com/thisisdkyadav/seaglass#readme",
+  "homepage": "https://github.com/thisisdkyadav/seaglass-ui#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thisisdkyadav/seaglass.git"
+    "url": "git+https://github.com/thisisdkyadav/seaglass-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/thisisdkyadav/seaglass/issues"
+    "url": "https://github.com/thisisdkyadav/seaglass-ui/issues"
   },
   "type": "module",
   "sideEffects": [

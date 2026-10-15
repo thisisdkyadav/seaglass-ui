@@ -117,7 +117,7 @@ npm run build               # dist/: ESM, CJS, .d.ts and seaglass.css
 
 ```bash
 npm run build:site                              # site/dist, served from /
-SITE_BASE=/seaglass/ npm run build:site      # served from a subpath (e.g. GitHub Pages project site)
+SITE_BASE=/seaglass-ui/ npm run build:site      # served from a subpath (e.g. GitHub Pages project site)
 npm run preview:site                            # serve the build locally (set SITE_BASE here too)
 ```
 
