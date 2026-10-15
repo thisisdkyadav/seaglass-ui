@@ -1,0 +1,79 @@
+/* ============================================================
+   Tokens. Everything themable is a CSS custom property on :root,
+   so apps override without touching component CSS.
+
+   Theme: <html data-sg-theme="light|dark">  (ThemeProvider sets it)
+   ============================================================ */
+:root {
+  /* type */
+  --sg-font: "Outfit", "Google Sans", Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sg-font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  --sg-text-xs: .75rem;
+  --sg-text-sm: .875rem;
+  --sg-text-md: .95rem;
+  --sg-text-lg: 1.1rem;
+
+  /* shape */
+  --sg-radius-sm: 12px;
+  --sg-radius-md: 18px;
+  --sg-radius-lg: 26px;
+  --sg-radius-xl: 32px;
+  --sg-radius-full: 999px;
+
+  /* paper and ink */
+  --sg-page: #ffffff;
+  --sg-ink: #1f2430;
+  --sg-ink-muted: #6d7280;
+  --sg-ink-faint: #9aa0ad;
+  --sg-line: rgb(60 70 90 / .1);
+  --sg-hover: rgb(255 255 255 / .45);
+  --sg-focus: hsl(234 70% 60%);
+  --sg-focus-ring: 0 0 0 3px hsl(234 70% 75% / .55);
+
+  /* white chips that rest inside pebbles */
+  --sg-chip: rgb(255 255 255 / .8);
+  --sg-chip-shadow: 0 2px 6px rgb(40 50 70 / .14), inset 0 -2px 4px rgb(215 222 236 / .75);
+
+  /* sunken wells (inputs) */
+  --sg-well: rgb(255 255 255 / .62);
+  --sg-well-shadow: inset 0 1px 3px rgb(40 50 70 / .16), inset 0 -1px 0 rgb(255 255 255 / .85);
+  --sg-well-page: hsl(220 20% 97%);
+
+  /* cast shadows: colour of the shade under every pebble */
+  --sg-shade: 222 12% 42%;
+  --sg-shade-alpha: .34;
+
+  /* overlay scrim */
+  --sg-scrim: rgb(30 34 44 / .22);
+
+  /* motion */
+  --sg-ease: cubic-bezier(.3, .9, .3, 1);
+  --sg-spring: cubic-bezier(.3, 1.5, .5, 1);
+  --sg-dur: .25s;
+
+  /* layers */
+  --sg-z-sticky: 20;
+  --sg-z-overlay: 50;
+  --sg-z-popover: 60;
+  --sg-z-toast: 70;
+  --sg-z-tooltip: 80;
+}
+
+/* Dark: a dim, warm room lit by one lamp, not a black screen. */
+[data-sg-theme="dark"] {
+  --sg-page: #b6a487;
+  --sg-ink: #2b241a;
+  --sg-ink-muted: #5a4f3f;
+  --sg-ink-faint: #7a6c57;
+  --sg-line: rgb(70 50 25 / .14);
+  --sg-hover: rgb(255 248 235 / .38);
+  --sg-chip: rgb(255 248 236 / .78);
+  --sg-chip-shadow: 0 2px 6px rgb(60 40 20 / .2), inset 0 -2px 4px rgb(225 210 190 / .7);
+  --sg-well: rgb(255 248 236 / .55);
+  --sg-well-shadow: inset 0 1px 3px rgb(60 40 20 / .22), inset 0 -1px 0 rgb(255 248 236 / .7);
+  --sg-well-page: hsl(36 30% 80%);
+  --sg-shade: 30 30% 16%;
+  --sg-shade-alpha: .5;
+  --sg-scrim: rgb(40 28 14 / .3);
+  color-scheme: light;
+}

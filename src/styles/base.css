@@ -1,0 +1,55 @@
+/* ============================================================
+   Base. Opt-in: only elements inside .sg-root (or the root itself,
+   ThemeProvider adds it to <body>) get the page and type defaults.
+   ============================================================ */
+.sg-root {
+  background: var(--sg-page);
+  color: var(--sg-ink);
+  font-family: var(--sg-font);
+  font-size: var(--sg-text-md);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+.sg-root *, .sg-root *::before, .sg-root *::after,
+[class^="sg-"], [class^="sg-"]::before, [class^="sg-"]::after { box-sizing: border-box; }
+
+/* The lamp. A fixed pool of warm light at the top-left and a gentle
+   fall-off towards the corners. Rendered by <ThemeProvider>; only
+   visible in dark. */
+.sg-lamp { display: none; }
+[data-sg-theme="dark"] .sg-lamp {
+  display: block;
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 620px at 30% 12%, rgb(255 238 205 / .55), rgb(255 230 190 / .18) 60%, transparent 100%),
+    radial-gradient(140% 120% at 50% 45%, transparent 40%, rgb(70 52 30 / .35) 100%);
+}
+[data-sg-theme="dark"] .sg-lamp::after {
+  content: ""; position: fixed; inset: 0;
+  background: radial-gradient(circle 1100px at 30% 12%, transparent 30%, rgb(40 28 14 / .14) 70%, rgb(40 28 14 / .28) 100%);
+}
+
+.sg-visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* A shared focus ring for everything focusable we render */
+.sg-focusable:focus-visible,
+[class^="sg-"]:not(input, textarea):focus-visible { outline: 2px solid var(--sg-focus); outline-offset: 3px; }
+/* text fields show focus on their well; menu rows show it as the highlight chip */
+.sg-input-el:focus-visible, .sg-command-input-el:focus-visible, .sg-textarea:focus-visible,
+.sg-menu-item:focus-visible, .sg-menu:focus-visible, .sg-popover-surface:focus-visible { outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [class^="sg-"], [class^="sg-"]::before, [class^="sg-"]::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}
+
+@keyframes sg-rise { from { opacity: 0; transform: translateY(6px) scale(.98); } }
+@keyframes sg-fall { to { opacity: 0; transform: translateY(4px) scale(.98); } }
+@keyframes sg-fade-in { from { opacity: 0; } }
+@keyframes sg-fade-out { to { opacity: 0; } }
+@keyframes sg-spin { to { transform: rotate(360deg); } }
+@keyframes sg-shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
