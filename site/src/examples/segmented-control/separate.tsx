@@ -1,4 +1,4 @@
-import { SegmentedControl } from "seaglass";
+import { SegmentedControl } from "seaglass-ui";
 import { LayoutGrid, List, Map } from "lucide-react";
 
 export default function Separate() {

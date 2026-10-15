@@ -22,7 +22,7 @@
       "@testing-library/jest-dom"
     ],
     "paths": {
-      "seaglass": [
+      "seaglass-ui": [
         "./src/index.ts"
       ]
     }

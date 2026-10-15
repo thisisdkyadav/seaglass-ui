@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   SidebarProvider, Sidebar, SidebarHeader, SidebarFooter, SidebarInset, SidebarTrigger, SidebarSearch, SidebarNav,
   SidebarButton, SidebarExpandedOnly, Avatar, Pebble, type NavSection,
-} from "seaglass";
+} from "seaglass-ui";
 import { LayoutDashboard, ShoppingBag, Inbox, Settings, LifeBuoy, Droplet, ChevronsUpDown } from "lucide-react";
 
 const sections: NavSection[] = [

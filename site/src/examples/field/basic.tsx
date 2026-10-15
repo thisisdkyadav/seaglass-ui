@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Field, Input } from "seaglass";
+import { Field, Input } from "seaglass-ui";
 import { Mail } from "lucide-react";
 
 // Field wires the label, description and error to its control (ids, aria-describedby, aria-invalid).

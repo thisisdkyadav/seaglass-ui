@@ -1,4 +1,4 @@
-import { DataTable, Avatar, Badge, Button, toast, type Column } from "seaglass";
+import { DataTable, Avatar, Badge, Button, toast, type Column } from "seaglass-ui";
 import { Truck, Trash2 } from "lucide-react";
 
 interface Order { id: string; customer: string; date: Date; status: "Paid" | "Pending" | "Refunded"; total: number }

@@ -1,4 +1,4 @@
-import { AlertDialog, Button, toast } from "seaglass";
+import { AlertDialog, Button, toast } from "seaglass-ui";
 import { Trash2, TriangleAlert } from "lucide-react";
 
 export default function Basic() {

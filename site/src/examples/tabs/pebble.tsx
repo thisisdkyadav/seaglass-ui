@@ -1,4 +1,4 @@
-import { Tabs, TabsList, Tab, TabsContent } from "seaglass";
+import { Tabs, TabsList, Tab, TabsContent } from "seaglass-ui";
 import { LayoutDashboard, Zap, Settings } from "lucide-react";
 
 export default function PebbleTabs() {

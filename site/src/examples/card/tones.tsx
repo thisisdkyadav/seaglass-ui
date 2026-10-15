@@ -1,4 +1,4 @@
-import { Card, CardHeader } from "seaglass";
+import { Card, CardHeader } from "seaglass-ui";
 import { Leaf, Sparkles, SunMedium } from "lucide-react";
 
 export default function Tones() {

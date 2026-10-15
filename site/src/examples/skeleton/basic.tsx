@@ -1,4 +1,4 @@
-import { Skeleton } from "seaglass";
+import { Skeleton } from "seaglass-ui";
 
 export default function Basic() {
   return (

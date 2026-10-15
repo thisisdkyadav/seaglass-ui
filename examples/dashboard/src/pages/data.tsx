@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   Card, CardHeader, Tabs, TabsList, Tab, TabsContent, Accordion, AccordionItem, Collapsible, CollapsibleTrigger, CollapsibleContent,
   Breadcrumbs, Pagination, Button, Calendar, Stat, Sparkline, BarChart, Table, TR, TH, TD, Badge, Separator, type DateRange,
-} from "seaglass";
+} from "seaglass-ui";
 import { orders, money } from "../data";
 
 const I = (name: string) => <span className="ms">{name}</span>;

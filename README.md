@@ -5,12 +5,12 @@ frosted, tumbled-glass pebble resting on white paper, lit by one fixed lamp at t
 For the full design rationale, see [DESIGN.md](DESIGN.md).
 
 ```bash
-npm install seaglass
+npm install seaglass-ui
 ```
 
 ```tsx
-import "seaglass/styles.css";
-import { ThemeProvider, Toaster, Button, toast } from "seaglass";
+import "seaglass-ui/styles.css";
+import { ThemeProvider, Toaster, Button, toast } from "seaglass-ui";
 
 export function App() {
   return (

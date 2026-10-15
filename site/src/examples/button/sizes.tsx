@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "seaglass";
+import { Button, ButtonGroup } from "seaglass-ui";
 
 export default function Sizes() {
   return (

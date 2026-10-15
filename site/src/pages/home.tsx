@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   Button, Badge, Card, CardHeader, Field, Input, Switch, SegmentedControl, Avatar, AvatarGroup, Stat, Slider,
   Tabs, TabsList, Tab, Kbd, Checkbox, Progress, IconButton, Tooltip, toast,
-} from "seaglass";
+} from "seaglass-ui";
 import {
   ArrowRight, Accessibility, Keyboard, Palette, Moon, Package, FileCode2, Search, Wallet, Heart, Share2, Bell,
 } from "lucide-react";
@@ -44,8 +44,8 @@ export function Home() {
               <Button size="lg" tone="clear" onClick={() => navigate("/components")}>Browse components</Button>
             </div>
             <div className="site-install sg-well">
-              <code><span className="site-faint">$</span> npm install seaglass</code>
-              <CopyButton text="npm install seaglass" label="Copy install command" />
+              <code><span className="site-faint">$</span> npm install seaglass-ui</code>
+              <CopyButton text="npm install seaglass-ui" label="Copy install command" />
             </div>
           </div>
           <Showcase />

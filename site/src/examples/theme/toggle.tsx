@@ -1,4 +1,4 @@
-import { SegmentedControl, useTheme, type ThemeSetting } from "seaglass";
+import { SegmentedControl, useTheme, type ThemeSetting } from "seaglass-ui";
 import { Sun, Moon, Monitor } from "lucide-react";
 
 // Wrap your app once in <ThemeProvider>. Shift+D toggles anywhere.

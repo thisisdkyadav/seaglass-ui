@@ -3,7 +3,7 @@ import {
   Stat, Card, CardHeader, BarChart, DataTable, Badge, Avatar, AvatarGroup, Button, SegmentedControl, DateRangePicker,
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, IconButton,
   AlertDialog, toast, type Column, type DateRange,
-} from "seaglass";
+} from "seaglass-ui";
 import { orders, weekly, team, money, type Order } from "../data";
 
 const I = (name: string) => <span className="ms">{name}</span>;

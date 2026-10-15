@@ -1,4 +1,4 @@
-import { Tooltip, IconButton, ButtonGroup } from "seaglass";
+import { Tooltip, IconButton, ButtonGroup } from "seaglass-ui";
 import { Archive, Bell, Trash2 } from "lucide-react";
 
 export default function Basic() {

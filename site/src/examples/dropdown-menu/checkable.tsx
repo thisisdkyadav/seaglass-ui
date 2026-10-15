@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator,
   DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, Button,
-} from "seaglass";
+} from "seaglass-ui";
 import { Columns3 } from "lucide-react";
 
 export default function Checkable() {

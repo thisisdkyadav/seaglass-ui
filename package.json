@@ -1,7 +1,7 @@
 {
-  "name": "seaglass",
+  "name": "seaglass-ui",
   "version": "0.1.0",
-  "description": "Sea Glass \u2014 a React component library of frosted, tumbled-glass pebbles.",
+  "description": "Sea Glass — a React component library of frosted, tumbled-glass pebbles.",
   "keywords": [
     "react",
     "components",

@@ -1,5 +1,5 @@
 import { useState, type ComponentType } from "react";
-import { Tabs, TabsList, Tab } from "seaglass";
+import { Tabs, TabsList, Tab } from "seaglass-ui";
 import { Eye, Code2 } from "lucide-react";
 import { CodeBlock } from "./code";
 import type { ExampleRef } from "../content/registry";

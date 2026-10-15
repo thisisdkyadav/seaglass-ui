@@ -1,4 +1,4 @@
-import type { NavSection } from "seaglass";
+import type { NavSection } from "seaglass-ui";
 
 const I = (name: string) => <span className="ms">{name}</span>;
 

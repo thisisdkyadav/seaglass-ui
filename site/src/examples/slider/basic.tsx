@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Field, Slider } from "seaglass";
+import { Field, Slider } from "seaglass-ui";
 
 export default function Basic() {
   const [volume, setVolume] = useState([60]);

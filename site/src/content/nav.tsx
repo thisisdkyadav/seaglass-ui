@@ -1,4 +1,4 @@
-import type { NavSection } from "seaglass";
+import type { NavSection } from "seaglass-ui";
 import { BookOpen, Download, Palette, Moon, Keyboard, Waves, LayoutGrid } from "lucide-react";
 import { docs } from "./docs";
 import { registry, groups } from "./registry";

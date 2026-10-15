@@ -1,4 +1,4 @@
-import { Field, Combobox } from "seaglass";
+import { Field, Combobox } from "seaglass-ui";
 
 const countries = ["Australia", "Brazil", "Canada", "Denmark", "France", "Germany", "India", "Japan", "Kenya", "Mexico", "Norway", "Portugal", "Singapore", "Spain", "Sweden", "United Kingdom", "United States"]
   .map((c) => ({ value: c.toLowerCase().replace(/ /g, "-"), label: c, group: c < "M" ? "A – L" : "M – Z" }));

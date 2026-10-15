@@ -1,4 +1,4 @@
-import { Field, Select } from "seaglass";
+import { Field, Select } from "seaglass-ui";
 
 export default function Basic() {
   return (

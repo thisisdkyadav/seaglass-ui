@@ -1,4 +1,4 @@
-import { Badge } from "seaglass";
+import { Badge } from "seaglass-ui";
 
 export default function Variants() {
   return (

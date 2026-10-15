@@ -1,4 +1,4 @@
-import { EmptyState, Button } from "seaglass";
+import { EmptyState, Button } from "seaglass-ui";
 import { Compass } from "lucide-react";
 import { DocsLayout } from "../layout";
 import { navigate } from "../router";

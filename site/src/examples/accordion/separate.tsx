@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem } from "seaglass";
+import { Accordion, AccordionItem } from "seaglass-ui";
 
 export default function Separate() {
   return (

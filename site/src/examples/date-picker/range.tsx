@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Field, DateRangePicker, type DateRange } from "seaglass";
+import { Field, DateRangePicker, type DateRange } from "seaglass-ui";
 
 const daysAgo = (n: number) => new Date(Date.now() - n * 864e5);
 

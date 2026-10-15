@@ -1,4 +1,4 @@
-/* Sea Glass — React components. Import the styles once:  import "seaglass/styles.css"; */
+/* Sea Glass — React components. Import the styles once:  import "seaglass-ui/styles.css"; */
 
 // foundation
 export { ThemeProvider, useTheme, type ThemeProviderProps, type ThemeSetting } from "./components/theme";

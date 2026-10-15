@@ -1,4 +1,4 @@
-import { Card, EmptyState, Button } from "seaglass";
+import { Card, EmptyState, Button } from "seaglass-ui";
 
 export function Placeholder({ title }: { title: string }) {
   return (

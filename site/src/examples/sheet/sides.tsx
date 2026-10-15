@@ -1,4 +1,4 @@
-import { Sheet, SheetTrigger, SheetContent, DialogHeader, DialogBody, Button, ButtonGroup, Field, Input, Switch } from "seaglass";
+import { Sheet, SheetTrigger, SheetContent, DialogHeader, DialogBody, Button, ButtonGroup, Field, Input, Switch } from "seaglass-ui";
 
 const sides = ["left", "right", "top", "bottom"] as const;
 

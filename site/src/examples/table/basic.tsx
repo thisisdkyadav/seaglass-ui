@@ -1,4 +1,4 @@
-import { Table, TR, TH, TD, Badge } from "seaglass";
+import { Table, TR, TH, TD, Badge } from "seaglass-ui";
 
 const invoices = [
   { id: "INV-001", status: "Paid", method: "Card", amount: 250 },

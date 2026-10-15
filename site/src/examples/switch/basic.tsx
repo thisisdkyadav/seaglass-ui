@@ -1,4 +1,4 @@
-import { Switch } from "seaglass";
+import { Switch } from "seaglass-ui";
 
 export default function Basic() {
   return (

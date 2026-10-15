@@ -1,4 +1,4 @@
-import { RadioGroup, Radio } from "seaglass";
+import { RadioGroup, Radio } from "seaglass-ui";
 
 export default function Horizontal() {
   return (

@@ -1,4 +1,4 @@
-import { Count } from "seaglass";
+import { Count } from "seaglass-ui";
 
 export default function Counts() {
   return (

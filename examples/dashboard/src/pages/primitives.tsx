@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   Pebble, Card, CardHeader, CardFooter, Button, IconButton, ButtonGroup, Badge, Count, Avatar, AvatarGroup, Kbd, Separator,
   Skeleton, Progress, Spinner, EmptyState, Tooltip, type Tone,
-} from "seaglass";
+} from "seaglass-ui";
 
 const I = (name: string) => <span className="ms">{name}</span>;
 const tones: Tone[] = ["clear", "periwinkle", "aqua", "sky", "seafoam", "mint", "lilac", "coral", "rose", "amber", "sand"];

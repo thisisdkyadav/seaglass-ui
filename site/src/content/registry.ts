@@ -36,7 +36,7 @@ export const registry: Entry[] = [
     slug: "pebble", name: "Pebble", group: "Foundations",
     summary: "The material every surface is made of: a frosted, domed stone that casts a soft shadow.",
     description: "Pebble is the base of the library. Buttons, cards, badges and menus are all pebbles with different shapes. Use it directly for custom surfaces — swatches, logos, tiles, highlight blocks.",
-    imports: `import { Pebble } from "seaglass";`,
+    imports: `import { Pebble } from "seaglass-ui";`,
     examples: [
       { id: "pebble/tones", title: "Tones", description: "Eleven sun-bleached tints plus a milky clear. Text automatically takes a very dark shade of the pebble's own hue." },
       { id: "pebble/depth", title: "Depth", description: "How far the pebble sits above the page. Shadow length scales with depth so everything appears to rest at the same height." },
@@ -57,7 +57,7 @@ export const registry: Entry[] = [
   {
     slug: "theme", name: "Theme", group: "Foundations",
     summary: "Light paper, or a dim warm room lit by one lamp. Persisted, system-aware and toggleable.",
-    imports: `import { ThemeProvider, useTheme } from "seaglass";`,
+    imports: `import { ThemeProvider, useTheme } from "seaglass-ui";`,
     examples: [{ id: "theme/toggle", title: "Theme switcher", description: "useTheme gives the setting, the resolved theme and a toggle. Try Shift+D anywhere on this page." }],
     api: [
       {
@@ -86,7 +86,7 @@ export const registry: Entry[] = [
   {
     slug: "button", name: "Button", group: "Primitives",
     summary: "A raised pebble that lifts on hover and sinks when pressed. Plus soft, ghost and link variants.",
-    imports: `import { Button, IconButton, ButtonGroup } from "seaglass";`,
+    imports: `import { Button, IconButton, ButtonGroup } from "seaglass-ui";`,
     examples: [
       { id: "button/variants", title: "Variants" },
       { id: "button/tones", title: "Tones", description: "Every tone works with every variant." },
@@ -125,7 +125,7 @@ export const registry: Entry[] = [
   {
     slug: "badge", name: "Badge", group: "Primitives",
     summary: "Small status labels and counts.",
-    imports: `import { Badge, Count } from "seaglass";`,
+    imports: `import { Badge, Count } from "seaglass-ui";`,
     examples: [
       { id: "badge/variants", title: "Variants" },
       { id: "badge/count", title: "Count", description: "A numeric pill. max caps it, e.g. 99+." },
@@ -152,7 +152,7 @@ export const registry: Entry[] = [
   {
     slug: "avatar", name: "Avatar", group: "Primitives",
     summary: "A picture, or initials on a pebble, with an optional presence dot.",
-    imports: `import { Avatar, AvatarGroup } from "seaglass";`,
+    imports: `import { Avatar, AvatarGroup } from "seaglass-ui";`,
     examples: [
       { id: "avatar/sizes", title: "Sizes and status", description: "Without src, initials are shown on a tone picked stably from the name." },
       { id: "avatar/group", title: "Group", description: "Overlapping stack; anything past max collapses into +N." },
@@ -176,7 +176,7 @@ export const registry: Entry[] = [
   {
     slug: "card", name: "Card", group: "Primitives",
     summary: "A large pebble for grouping content, with a header, body and footer.",
-    imports: `import { Card, CardHeader, CardBody, CardFooter } from "seaglass";`,
+    imports: `import { Card, CardHeader, CardBody, CardFooter } from "seaglass-ui";`,
     examples: [
       { id: "card/basic", title: "Basic" },
       { id: "card/tones", title: "Tones and interactive", description: "interactive lifts on hover — use with asChild for cards that are links." },
@@ -204,14 +204,14 @@ export const registry: Entry[] = [
   {
     slug: "kbd", name: "Kbd", group: "Primitives",
     summary: "Keyboard keys and combos, rendered with the right symbols for the platform.",
-    imports: `import { Kbd } from "seaglass";`,
+    imports: `import { Kbd } from "seaglass-ui";`,
     examples: [{ id: "kbd/combos", title: "Keys and combos", description: "\"mod\" shows ⌘ on Apple devices and Ctrl elsewhere." }],
     api: [{ name: "Kbd", props: [{ name: "keys", type: "string", description: "A combo like \"mod+shift+p\". Or pass children for a single key." }] }],
   },
   {
     slug: "separator", name: "Separator", group: "Primitives",
     summary: "A hairline between content, optionally with a label.",
-    imports: `import { Separator } from "seaglass";`,
+    imports: `import { Separator } from "seaglass-ui";`,
     examples: [{ id: "separator/basic", title: "Horizontal, labelled and vertical" }],
     api: [{
       name: "Separator", props: [
@@ -225,7 +225,7 @@ export const registry: Entry[] = [
   {
     slug: "skeleton", name: "Skeleton", group: "Primitives",
     summary: "Placeholder shapes that shimmer while content loads.",
-    imports: `import { Skeleton } from "seaglass";`,
+    imports: `import { Skeleton } from "seaglass-ui";`,
     examples: [{ id: "skeleton/basic", title: "Loading card" }],
     api: [{
       name: "Skeleton", props: [
@@ -239,7 +239,7 @@ export const registry: Entry[] = [
   {
     slug: "progress", name: "Progress & Spinner", group: "Primitives",
     summary: "A sunken track filled with a pebble, and a spinner for indeterminate waits.",
-    imports: `import { Progress, Spinner } from "seaglass";`,
+    imports: `import { Progress, Spinner } from "seaglass-ui";`,
     examples: [
       { id: "progress/basic", title: "Progress", description: "Leave value undefined for an indeterminate bar." },
       { id: "progress/spinner", title: "Spinner" },
@@ -263,7 +263,7 @@ export const registry: Entry[] = [
   {
     slug: "empty-state", name: "Empty state", group: "Primitives",
     summary: "What to show when there is nothing to show.",
-    imports: `import { EmptyState } from "seaglass";`,
+    imports: `import { EmptyState } from "seaglass-ui";`,
     examples: [{ id: "empty-state/basic", title: "Basic" }],
     api: [{
       name: "EmptyState", props: [
@@ -281,7 +281,7 @@ export const registry: Entry[] = [
     slug: "field", name: "Field & Input", group: "Forms",
     summary: "Sunken text fields with labels, hints and errors wired up for you.",
     description: "Field generates ids and connects the label, description and error to whatever control is inside it — Input, Textarea, Select, Combobox or a DatePicker.",
-    imports: `import { Field, Input, Textarea } from "seaglass";`,
+    imports: `import { Field, Input, Textarea } from "seaglass-ui";`,
     examples: [
       { id: "field/basic", title: "Label, hint and error", description: "Passing error marks the control aria-invalid and links the message." },
       { id: "field/adornments", title: "Leading and trailing", description: "Icons, text or buttons inside the well." },
@@ -315,7 +315,7 @@ export const registry: Entry[] = [
   {
     slug: "checkbox", name: "Checkbox", group: "Forms",
     summary: "A small pebble that fills with a check. Supports indeterminate.",
-    imports: `import { Checkbox } from "seaglass";`,
+    imports: `import { Checkbox } from "seaglass-ui";`,
     examples: [{ id: "checkbox/basic", title: "Basic" }],
     api: [{
       name: "Checkbox", props: [
@@ -334,7 +334,7 @@ export const registry: Entry[] = [
   {
     slug: "radio-group", name: "Radio group", group: "Forms",
     summary: "One choice from a few.",
-    imports: `import { RadioGroup, Radio } from "seaglass";`,
+    imports: `import { RadioGroup, Radio } from "seaglass-ui";`,
     examples: [{ id: "radio-group/basic", title: "With descriptions" }, { id: "radio-group/horizontal", title: "Horizontal" }],
     api: [
       {
@@ -353,7 +353,7 @@ export const registry: Entry[] = [
   {
     slug: "switch", name: "Switch", group: "Forms",
     summary: "An on/off toggle: a sunken track with a white chip.",
-    imports: `import { Switch } from "seaglass";`,
+    imports: `import { Switch } from "seaglass-ui";`,
     examples: [{ id: "switch/basic", title: "Basic" }],
     api: [{
       name: "Switch", props: [
@@ -371,7 +371,7 @@ export const registry: Entry[] = [
   {
     slug: "slider", name: "Slider", group: "Forms",
     summary: "Pick a value or a range by dragging a pebble along a sunken track.",
-    imports: `import { Slider } from "seaglass";`,
+    imports: `import { Slider } from "seaglass-ui";`,
     examples: [{ id: "slider/basic", title: "Single value" }, { id: "slider/range", title: "Range", description: "Pass two values for two thumbs. Give each a name with thumbLabels." }],
     api: [{
       name: "Slider", props: [
@@ -389,7 +389,7 @@ export const registry: Entry[] = [
   {
     slug: "segmented-control", name: "Segmented control", group: "Forms",
     summary: "A row of mutually exclusive options. Separate pebbles, or one pebble with a white chip.",
-    imports: `import { SegmentedControl } from "seaglass";`,
+    imports: `import { SegmentedControl } from "seaglass-ui";`,
     examples: [
       { id: "segmented-control/separate", title: "Separate", description: "Each option is its own pebble; the selected one fills with colour." },
       { id: "segmented-control/joined", title: "Joined", description: "One pebble, with a white chip resting on the selection." },
@@ -411,7 +411,7 @@ export const registry: Entry[] = [
   {
     slug: "select", name: "Select", group: "Forms",
     summary: "Choose one option from a list in a frosted popover.",
-    imports: `import { Select, SelectItem, SelectSeparator } from "seaglass";`,
+    imports: `import { Select, SelectItem, SelectSeparator } from "seaglass-ui";`,
     examples: [{ id: "select/basic", title: "Basic" }, { id: "select/groups", title: "Groups, icons and descriptions" }],
     api: [{
       name: "Select", props: [
@@ -430,7 +430,7 @@ export const registry: Entry[] = [
   {
     slug: "combobox", name: "Combobox", group: "Forms",
     summary: "A searchable select, single or multiple, with optional create.",
-    imports: `import { Combobox } from "seaglass";`,
+    imports: `import { Combobox } from "seaglass-ui";`,
     examples: [
       { id: "combobox/single", title: "Single", description: "Options can be grouped and carry icons, descriptions and extra keywords." },
       { id: "combobox/multiple", title: "Multiple", description: "Chosen values become chips; past maxChips they collapse into +N. onCreate offers to add what was typed." },
@@ -453,7 +453,7 @@ export const registry: Entry[] = [
   {
     slug: "date-picker", name: "Date picker", group: "Forms",
     summary: "A calendar, a single-date picker and a range picker with presets.",
-    imports: `import { Calendar, DatePicker, DateRangePicker } from "seaglass";`,
+    imports: `import { Calendar, DatePicker, DateRangePicker } from "seaglass-ui";`,
     examples: [
       { id: "date-picker/calendar", title: "Calendar" },
       { id: "date-picker/date-picker", title: "Date picker" },
@@ -490,7 +490,7 @@ export const registry: Entry[] = [
   {
     slug: "tooltip", name: "Tooltip", group: "Overlays",
     summary: "A short label on hover or focus, with an optional shortcut.",
-    imports: `import { Tooltip, TooltipProvider } from "seaglass";`,
+    imports: `import { Tooltip, TooltipProvider } from "seaglass-ui";`,
     examples: [{ id: "tooltip/basic", title: "With shortcuts" }],
     api: [{
       name: "Tooltip", props: [
@@ -506,7 +506,7 @@ export const registry: Entry[] = [
   {
     slug: "popover", name: "Popover & Hover card", group: "Overlays",
     summary: "Floating frosted panels: click for a popover, hover for a preview card.",
-    imports: `import { Popover, PopoverTrigger, PopoverContent, HoverCard, HoverCardTrigger, HoverCardContent } from "seaglass";`,
+    imports: `import { Popover, PopoverTrigger, PopoverContent, HoverCard, HoverCardTrigger, HoverCardContent } from "seaglass-ui";`,
     examples: [{ id: "popover/basic", title: "Popover" }, { id: "popover/hover-card", title: "Hover card" }],
     api: [{
       name: "PopoverContent", props: [
@@ -521,7 +521,7 @@ export const registry: Entry[] = [
   {
     slug: "dropdown-menu", name: "Dropdown menu", group: "Overlays",
     summary: "Actions in a menu: icons, shortcuts, checkable items, radio groups and submenus.",
-    imports: `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "seaglass";`,
+    imports: `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "seaglass-ui";`,
     examples: [{ id: "dropdown-menu/basic", title: "Actions and submenus" }, { id: "dropdown-menu/checkable", title: "Checkable and radio items" }],
     api: [{
       name: "DropdownMenuItem", description: "Also applies to CheckboxItem, RadioItem and SubTrigger.", props: [
@@ -539,7 +539,7 @@ export const registry: Entry[] = [
   {
     slug: "context-menu", name: "Context menu", group: "Overlays",
     summary: "The same menu, opened with a right-click or long-press.",
-    imports: `import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from "seaglass";`,
+    imports: `import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from "seaglass-ui";`,
     examples: [{ id: "context-menu/basic", title: "Right-click the area" }],
     api: [{ name: "ContextMenuItem", props: [{ name: "icon · shortcut · description · tone · inset", type: "—", description: "As on DropdownMenuItem." }] }],
     keyboard: [["Shift + F10", "Open"], ["↑ ↓", "Move"], ["Esc", "Close"]],
@@ -548,7 +548,7 @@ export const registry: Entry[] = [
   {
     slug: "dialog", name: "Dialog", group: "Overlays",
     summary: "A modal pebble over a soft scrim.",
-    imports: `import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose } from "seaglass";`,
+    imports: `import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose } from "seaglass-ui";`,
     examples: [{ id: "dialog/basic", title: "Form in a dialog" }],
     api: [{
       name: "DialogContent", props: [
@@ -564,7 +564,7 @@ export const registry: Entry[] = [
   {
     slug: "sheet", name: "Sheet", group: "Overlays",
     summary: "A dialog that slides in from an edge.",
-    imports: `import { Sheet, SheetTrigger, SheetContent } from "seaglass";`,
+    imports: `import { Sheet, SheetTrigger, SheetContent } from "seaglass-ui";`,
     examples: [{ id: "sheet/sides", title: "Sides" }],
     api: [{ name: "SheetContent", props: [{ name: "side", type: `"left" | "right" | "top" | "bottom"`, default: `"right"`, description: "" }, { name: "size · tone · hideClose", type: "—", description: "As on DialogContent." }] }],
     keyboard: [["Esc", "Close"]],
@@ -573,7 +573,7 @@ export const registry: Entry[] = [
   {
     slug: "alert-dialog", name: "Alert dialog", group: "Overlays",
     summary: "Confirm a destructive action. Waits for async confirms with a spinner.",
-    imports: `import { AlertDialog } from "seaglass";`,
+    imports: `import { AlertDialog } from "seaglass-ui";`,
     examples: [{ id: "alert-dialog/basic", title: "Confirm a delete", description: "Return a promise from onConfirm and the dialog stays open, with a busy button, until it settles. If it rejects, the dialog stays open." }],
     api: [{
       name: "AlertDialog", props: [
@@ -594,7 +594,7 @@ export const registry: Entry[] = [
   {
     slug: "toast", name: "Toast", group: "Overlays",
     summary: "Brief notifications, called from anywhere with toast().",
-    imports: `import { Toaster, toast } from "seaglass";`,
+    imports: `import { Toaster, toast } from "seaglass-ui";`,
     examples: [
       { id: "toast/kinds", title: "Kinds" },
       { id: "toast/action", title: "With an action" },
@@ -618,7 +618,7 @@ export const registry: Entry[] = [
   {
     slug: "command", name: "Command", group: "Overlays",
     summary: "Fuzzy-searchable command lists, inline or as a ⌘K palette.",
-    imports: `import { Command, CommandInput, CommandList, CommandGroup, CommandItem, CommandPalette } from "seaglass";`,
+    imports: `import { Command, CommandInput, CommandList, CommandGroup, CommandItem, CommandPalette } from "seaglass-ui";`,
     examples: [{ id: "command/inline", title: "Inline" }, { id: "command/palette", title: "Palette", description: "A dialog with the command list inside. Opens with ⌘K / Ctrl K by default." }],
     api: [
       {
@@ -640,7 +640,7 @@ export const registry: Entry[] = [
   {
     slug: "tabs", name: "Tabs", group: "Navigation",
     summary: "Switch between views. A pebble tray with a white chip, plain chips or an underline.",
-    imports: `import { Tabs, TabsList, Tab, TabsContent } from "seaglass";`,
+    imports: `import { Tabs, TabsList, Tab, TabsContent } from "seaglass-ui";`,
     examples: [{ id: "tabs/pebble", title: "Pebble" }, { id: "tabs/variants", title: "Chips and line" }],
     api: [
       { name: "Tabs", props: [{ name: "variant", type: `"pebble" | "chips" | "line"`, default: `"pebble"`, description: "" }, tone(`"clear"`), { name: "value · defaultValue · onValueChange", type: "string", description: "" }, { name: "activationMode", type: `"automatic" | "manual"`, default: `"automatic"`, description: "" }] },
@@ -652,7 +652,7 @@ export const registry: Entry[] = [
   {
     slug: "accordion", name: "Accordion & Collapsible", group: "Navigation",
     summary: "Fold content away. Joined in one pebble, or as separate stones.",
-    imports: `import { Accordion, AccordionItem, Collapsible, CollapsibleTrigger, CollapsibleContent } from "seaglass";`,
+    imports: `import { Accordion, AccordionItem, Collapsible, CollapsibleTrigger, CollapsibleContent } from "seaglass-ui";`,
     examples: [{ id: "accordion/joined", title: "Joined" }, { id: "accordion/separate", title: "Separate, multiple open" }, { id: "accordion/collapsible", title: "Collapsible" }],
     api: [
       { name: "Accordion", props: [{ name: "type", type: `"single" | "multiple"`, required: true, description: "" }, { name: "collapsible", type: "boolean", default: "false", description: "single only: allow closing the open item." }, { name: "variant", type: `"joined" | "separate"`, default: `"joined"`, description: "" }, tone(`"clear"`), { name: "value · defaultValue · onValueChange", type: "string | string[]", description: "" }] },
@@ -664,7 +664,7 @@ export const registry: Entry[] = [
   {
     slug: "breadcrumbs", name: "Breadcrumbs", group: "Navigation",
     summary: "Where you are, with long trails collapsed into a menu.",
-    imports: `import { Breadcrumbs } from "seaglass";`,
+    imports: `import { Breadcrumbs } from "seaglass-ui";`,
     examples: [{ id: "breadcrumbs/basic", title: "Basic and collapsed" }],
     api: [{
       name: "Breadcrumbs", props: [
@@ -679,7 +679,7 @@ export const registry: Entry[] = [
   {
     slug: "pagination", name: "Pagination", group: "Navigation",
     summary: "Move through pages of results.",
-    imports: `import { Pagination } from "seaglass";`,
+    imports: `import { Pagination } from "seaglass-ui";`,
     examples: [{ id: "pagination/basic", title: "Basic" }],
     api: [{ name: "Pagination", props: [{ name: "page", type: "number", required: true, description: "1-based." }, { name: "pageCount", type: "number", required: true, description: "" }, { name: "onPageChange", type: "(page: number) => void", required: true, description: "" }, { name: "siblings", type: "number", default: "1", description: "Pages either side of the current one." }] }],
   },
@@ -687,7 +687,7 @@ export const registry: Entry[] = [
     slug: "sidebar", name: "Sidebar", group: "Navigation",
     summary: "An app shell: collapsible to a rail, resizable, searchable, multi-level, and a drawer on phones.",
     description: "SidebarProvider lays out the shell and remembers its state. SidebarNav takes your sections as data and handles nested groups, keyboard navigation, rail flyouts and search. This very site is built with it.",
-    imports: `import { SidebarProvider, Sidebar, SidebarHeader, SidebarSearch, SidebarNav, SidebarFooter, SidebarInset, SidebarTrigger } from "seaglass";`,
+    imports: `import { SidebarProvider, Sidebar, SidebarHeader, SidebarSearch, SidebarNav, SidebarFooter, SidebarInset, SidebarTrigger } from "seaglass-ui";`,
     examples: [{ id: "sidebar/shell", title: "App shell", description: "Contained here; in your app it fills the viewport." }],
     api: [
       {
@@ -733,14 +733,14 @@ export const registry: Entry[] = [
   {
     slug: "table", name: "Table", group: "Data display",
     summary: "Styled table parts for when you want full control of the markup.",
-    imports: `import { Table, THead, TBody, TR, TH, TD } from "seaglass";`,
+    imports: `import { Table, THead, TBody, TR, TH, TD } from "seaglass-ui";`,
     examples: [{ id: "table/basic", title: "Basic" }],
     api: [{ name: "Table", props: [{ name: "density", type: `"compact" | "normal" | "relaxed"`, default: `"normal"`, description: "Row height." }, { name: "stickyHeader", type: "boolean", default: "false", description: "" }] }, { name: "TH · TD", props: [{ name: "align", type: `"left" | "right" | "center"`, description: "" }] }],
   },
   {
     slug: "data-table", name: "Data table", group: "Data display",
     summary: "Sorting, search, selection, bulk actions and pagination, from columns and rows.",
-    imports: `import { DataTable, type Column } from "seaglass";`,
+    imports: `import { DataTable, type Column } from "seaglass-ui";`,
     examples: [{ id: "data-table/full", title: "Orders", description: "Select rows to see bulk actions. Click headers to sort." }],
     api: [
       {
@@ -776,7 +776,7 @@ export const registry: Entry[] = [
   {
     slug: "stat", name: "Stat & Sparkline", group: "Data display",
     summary: "A headline number with its change and a tiny trend line.",
-    imports: `import { Stat, Sparkline } from "seaglass";`,
+    imports: `import { Stat, Sparkline } from "seaglass-ui";`,
     examples: [{ id: "stat/basic", title: "Stats", description: "The arrow follows the delta's sign; trend says whether that's good (mint) or bad (coral)." }, { id: "stat/sparkline", title: "Sparkline" }],
     api: [
       { name: "Stat", props: [{ name: "label · value", type: "ReactNode", required: true, description: "" }, { name: "delta", type: "ReactNode", description: "e.g. \"+12.5%\"." }, { name: "trend", type: `"up" | "down"`, default: "from delta", description: "Good or bad news." }, { name: "data", type: "number[]", description: "Sparkline values." }, { name: "icon", type: "ReactNode", description: "" }, tone(`"periwinkle"`)] },
@@ -786,7 +786,7 @@ export const registry: Entry[] = [
   {
     slug: "bar-chart", name: "Bar chart", group: "Data display",
     summary: "Every bar is its own small pebble.",
-    imports: `import { BarChart } from "seaglass";`,
+    imports: `import { BarChart } from "seaglass-ui";`,
     examples: [{ id: "bar-chart/basic", title: "Weekly revenue" }],
     api: [{ name: "BarChart", props: [{ name: "data", type: "{ label, value }[]", required: true, description: "" }, { name: "height", type: "number", default: "170", description: "" }, tone(`"amber"`), { name: "highlight", type: `"max" | number`, default: `"max"`, description: "Bar drawn in a deeper tint." }, { name: "format", type: "(v: number) => string", description: "Tooltip and label format." }] }],
     a11y: ["Rendered as a list with each bar's label and value for screen readers."],
@@ -796,7 +796,7 @@ export const registry: Entry[] = [
   {
     slug: "hooks", name: "Hooks", group: "Utilities",
     summary: "The hooks the components use, exported for your own code.",
-    imports: `import { useHotkeys, useControllableState, useMediaQuery, usePersistedState } from "seaglass";`,
+    imports: `import { useHotkeys, useControllableState, useMediaQuery, usePersistedState } from "seaglass-ui";`,
     examples: [{ id: "hooks/hotkeys", title: "useHotkeys" }],
     api: [
       {

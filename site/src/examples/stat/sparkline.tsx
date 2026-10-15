@@ -1,4 +1,4 @@
-import { Sparkline } from "seaglass";
+import { Sparkline } from "seaglass-ui";
 
 export default function SparklineExample() {
   return (

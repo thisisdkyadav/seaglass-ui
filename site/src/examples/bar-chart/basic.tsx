@@ -1,4 +1,4 @@
-import { BarChart } from "seaglass";
+import { BarChart } from "seaglass-ui";
 
 const data = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((label, i) => ({ label, value: [4200, 5100, 4700, 6800, 7900, 6100, 3900][i] }));
 

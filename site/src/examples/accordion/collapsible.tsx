@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button } from "seaglass";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button } from "seaglass-ui";
 import { ChevronDown } from "lucide-react";
 
 export default function CollapsibleExample() {

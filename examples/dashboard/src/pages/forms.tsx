@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   Card, CardHeader, CardFooter, Field, Input, Textarea, Select, Combobox, DatePicker, DateRangePicker, Checkbox, RadioGroup, Radio,
   Switch, Slider, SegmentedControl, Button, toast,
-} from "seaglass";
+} from "seaglass-ui";
 import { countries } from "../data";
 
 const I = (name: string) => <span className="ms">{name}</span>;
