@@ -36,7 +36,8 @@ export const CommandGroup = forwardRef<HTMLDivElement, React.ComponentPropsWitho
 });
 
 export const CommandSeparator = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof K.Separator>>(function CommandSeparator({ className, ...rest }, ref) {
-  return <K.Separator ref={ref} className={cx("sg-menu-separator", className)} {...rest} />;
+  // purely visual: a separator role is not allowed inside a listbox
+  return <K.Separator ref={ref} role="presentation" aria-hidden className={cx("sg-menu-separator", className)} {...rest} />;
 });
 
 export interface CommandItemProps extends React.ComponentPropsWithoutRef<typeof K.Item> { icon?: ReactNode; shortcut?: string; description?: ReactNode; trailing?: ReactNode }

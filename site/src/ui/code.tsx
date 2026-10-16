@@ -25,7 +25,7 @@ export function CodeBlock({ code, lang = "tsx", className, bare }: { code: strin
   const html = useMemo(() => (lang === "sh" || lang === "css" ? escape(text) : highlight(text)), [text, lang]);
   return (
     <div className={cx("site-code", bare && "site-code-bare", className)} data-lang={lang}>
-      <pre><code dangerouslySetInnerHTML={{ __html: html }} /></pre>
+      <pre tabIndex={0}><code dangerouslySetInnerHTML={{ __html: html }} /></pre>
       <CopyButton text={text} />
     </div>
   );

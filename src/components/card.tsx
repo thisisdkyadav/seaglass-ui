@@ -36,16 +36,18 @@ export interface CardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, "t
   /** Right-aligned actions (buttons, a menu, a legend). */
   actions?: ReactNode;
   icon?: ReactNode;
+  /** Heading element for the title. Pick the level that fits the page outline. @default "h3" */
+  titleAs?: "h2" | "h3" | "h4" | "h5" | "h6" | "div";
 }
 
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(function CardHeader(
-  { title, description, actions, icon, className, children, ...rest }, ref,
+  { title, description, actions, icon, titleAs: Title = "h3", className, children, ...rest }, ref,
 ) {
   return (
     <div ref={ref} className={cx("sg-card-header", className)} {...rest}>
       {icon && <span className="sg-card-icon" aria-hidden>{icon}</span>}
       <div className="sg-card-titles">
-        {title != null && <h3 className="sg-card-title">{title}</h3>}
+        {title != null && <Title className="sg-card-title">{title}</Title>}
         {description != null && <p className="sg-card-description">{description}</p>}
         {children}
       </div>

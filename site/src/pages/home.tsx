@@ -129,7 +129,7 @@ function Showcase() {
       <Stat className="site-show-stat" tone="seafoam" label="Revenue" icon={<Wallet />} value="$48,295" delta="+12.4%" data={[12, 18, 15, 22, 19, 27, 31, 29, 36]} />
 
       <Card className="site-show-form" padding="md">
-        <CardHeader title="Your plan" description="Change any time." />
+        <CardHeader titleAs="h2" title="Your plan" description="Change any time." />
         <div className="site-show-stack">
           <SegmentedControl aria-label="Plan" variant="joined" value={plan} onValueChange={setPlan} options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }, { value: "team", label: "Team" }]} />
           <Field label="Work email">

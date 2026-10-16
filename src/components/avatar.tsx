@@ -40,7 +40,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
       <A.Fallback className="sg-avatar-fallback" delayMs={src ? 400 : 0} aria-label={src ? undefined : name}>
         {fallback ?? initials(name)}
       </A.Fallback>
-      {status && <span className="sg-avatar-status" data-status={status} aria-label={status} />}
+      {status && <span className="sg-avatar-status" data-status={status} role="img" aria-label={status[0].toUpperCase() + status.slice(1)} />}
     </A.Root>
   );
 });

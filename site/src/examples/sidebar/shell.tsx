@@ -61,12 +61,12 @@ export default function Shell() {
           <SidebarExpandedOnly><SidebarTrigger /></SidebarExpandedOnly>
         </SidebarHeader>
         <SidebarSearch />
-        <SidebarNav sections={sections} activeId={active} onNavigate={(item) => setActive(item.id)} />
+        <SidebarNav aria-label="Workspace" sections={sections} activeId={active} onNavigate={(item) => setActive(item.id)} />
         <SidebarFooter>
           <SidebarButton media={<Avatar name="Ava Thompson" size="sm" tone="lilac" status="online" />} title="Ava Thompson" subtitle="ava@tidepool.co" railLabel="Ava Thompson" />
         </SidebarFooter>
       </Sidebar>
-      <SidebarInset>
+      <SidebarInset as="div">
         <Collapser />
         <h3 style={{ margin: 0 }}>{active}</h3>
         <p style={{ margin: 0, color: "var(--sg-ink-muted)" }}>

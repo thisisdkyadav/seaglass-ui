@@ -87,7 +87,7 @@ export function Combobox(props: ComboboxProps) {
         <ChevronsUpDown className="sg-select-icon" width={16} height={16} />
       </P.Trigger>
       <P.Portal>
-        <P.Content className="sg-combobox-content sg-pebble sg-popover-surface" data-tone="clear" data-depth="md" sideOffset={8} align="start">
+        <P.Content aria-label="Options" className="sg-combobox-content sg-pebble sg-popover-surface" data-tone="clear" data-depth="md" sideOffset={8} align="start">
           <Command loop>
             <CommandInput placeholder={searchPlaceholder} value={query} onValueChange={setQuery} />
             <CommandList>

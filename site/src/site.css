@@ -11,11 +11,11 @@
   --sh-jsxliterals: hsl(234 30% 30%);
   --sh-string: hsl(10 60% 42%);
   --sh-keyword: hsl(290 45% 42%);
-  --sh-comment: hsl(220 10% 58%);
+  --sh-comment: hsl(220 10% 44%);
 }
 [data-sg-theme="dark"] {
-  --sh-sign: hsl(30 15% 38%);
-  --sh-comment: hsl(32 15% 45%);
+  --sh-sign: hsl(30 15% 30%);
+  --sh-comment: hsl(32 18% 28%);
   --sh-property: hsl(234 40% 36%);
   --sh-class: hsl(186 55% 22%);
   --sh-entity: hsl(165 50% 22%);
@@ -153,7 +153,7 @@ a { color: inherit; }
 .site-prop-name { font-weight: 600; color: hsl(234 50% 42%); white-space: nowrap; }
 [data-sg-theme="dark"] .site-prop-name { color: hsl(234 40% 30%); }
 .site-prop-type { color: hsl(186 45% 30%); word-break: break-word; }
-[data-sg-theme="dark"] .site-prop-type { color: hsl(186 45% 22%); }
+[data-sg-theme="dark"] .site-prop-type { color: hsl(186 50% 16%); }
 .site-props td:nth-child(1) { min-width: 140px; }
 .site-props td:nth-child(2) { min-width: 160px; }
 .site-req { margin-left: 8px; vertical-align: 1px; }

@@ -12,20 +12,22 @@ export interface BreadcrumbsProps {
   /** Render links with your router: (crumb, children) => <Link to={crumb.href}>{children}</Link> */
   renderLink?: (crumb: Crumb, children: ReactNode) => ReactNode;
   className?: string;
+  /** Name of the navigation landmark. Give each one on a page its own. Default "Breadcrumb". */
+  "aria-label"?: string;
 }
 
-export function Breadcrumbs({ items, maxItems = 5, separator, renderLink, className }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, maxItems = 5, separator, renderLink, className, "aria-label": ariaLabel = "Breadcrumb" }: BreadcrumbsProps) {
   const collapse = items.length > maxItems;
   const shown: Array<Crumb | "…"> = collapse ? [items[0], "…", ...items.slice(-(maxItems - 2))] : items;
   return (
-    <nav aria-label="Breadcrumb" className={cx("sg-breadcrumbs", className)}>
+    <nav aria-label={ariaLabel} className={cx("sg-breadcrumbs", className)}>
       <ol>
         {shown.map((c, i) => {
           const last = i === shown.length - 1;
           return (
             <Fragment key={i}>
               <li className="sg-crumb">
-                {c === "…" ? <span className="sg-crumb-ellipsis" aria-label="More"><MoreIcon width={16} height={16} /></span>
+                {c === "…" ? <span className="sg-crumb-ellipsis" role="img" aria-label="More pages"><MoreIcon width={16} height={16} /></span>
                   : last ? <span aria-current="page">{c.label}</span>
                   : renderLink && c.href ? renderLink(c, c.label)
                   : c.href ? <a href={c.href} onClick={c.onClick}>{c.label}</a>
@@ -48,10 +50,12 @@ export interface PaginationProps {
   /** Pages shown either side of the current one. */
   siblings?: number;
   className?: string;
+  /** Name for the navigation landmark. Give each one a distinct name when a page has several. @default "Pagination" */
+  "aria-label"?: string;
 }
 
 /** 1-based. Collapses long ranges into ellipses: 1 … 4 5 6 … 20 */
-export function Pagination({ page, pageCount, onPageChange, siblings = 1, className }: PaginationProps) {
+export function Pagination({ page, pageCount, onPageChange, siblings = 1, className, "aria-label": label = "Pagination" }: PaginationProps) {
   const range: Array<number | "…"> = [];
   const lo = Math.max(2, page - siblings), hi = Math.min(pageCount - 1, page + siblings);
   range.push(1);
@@ -60,7 +64,7 @@ export function Pagination({ page, pageCount, onPageChange, siblings = 1, classN
   if (hi < pageCount - 1) range.push("…");
   if (pageCount > 1) range.push(pageCount);
   return (
-    <nav aria-label="Pagination" className={cx("sg-pagination", className)}>
+    <nav aria-label={label} className={cx("sg-pagination", className)}>
       <button type="button" className="sg-page" disabled={page <= 1} onClick={() => onPageChange(page - 1)} aria-label="Previous page"><ChevronLeft width={16} height={16} /></button>
       {range.map((p, i) =>
         p === "…" ? <span key={"e" + i} className="sg-page-ellipsis">…</span>

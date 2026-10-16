@@ -7,9 +7,9 @@ export default function Basic() {
       <PopoverTrigger asChild>
         <Button tone="aqua" icon={<Share2 />}>Share</Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent aria-labelledby="share-title">
         <div style={{ display: "grid", gap: 14, width: 280 }}>
-          <b>Share this report</b>
+          <b id="share-title">Share this report</b>
           <Field label="Invite by email">
             <Input size="sm" placeholder="name@company.com" />
           </Field>

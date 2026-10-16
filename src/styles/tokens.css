@@ -50,8 +50,8 @@
   /* paper and ink */
   --sg-page: #ffffff;
   --sg-ink: #1f2430;
-  --sg-ink-muted: #6d7280;
-  --sg-ink-faint: #9aa0ad;
+  --sg-ink-muted: #5f6573;
+  --sg-ink-faint: #6a707d;
   --sg-line: rgb(60 70 90 / .1);
   --sg-hover: rgb(255 255 255 / .45);
   --sg-focus: hsl(234 62% 62%);
@@ -91,8 +91,8 @@
 [data-sg-theme="dark"] {
   --sg-page: #b6a487;
   --sg-ink: #2b241a;
-  --sg-ink-muted: #5a4f3f;
-  --sg-ink-faint: #7a6c57;
+  --sg-ink-muted: #3a3125;
+  --sg-ink-faint: #433a2c;
   --sg-line: rgb(70 50 25 / .14);
   --sg-hover: rgb(255 248 235 / .38);
   --sg-chip: rgb(255 248 236 / .78);

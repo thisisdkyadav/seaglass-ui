@@ -9,7 +9,7 @@
   height: calc(var(--sg-control-md) - 6px); padding: 0 var(--sg-space-3);
   border: 0; border-radius: 9px; background: none;
   font: inherit; font-size: var(--sg-text-md); font-weight: var(--sg-weight-medium); color: inherit; white-space: nowrap;
-  cursor: pointer; opacity: .78;
+  cursor: pointer; opacity: .88;
   transition: background .2s, box-shadow .2s, opacity .2s;
 }
 .sg-tab:hover { opacity: 1; }

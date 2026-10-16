@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { fileURLToPath } from "node:url";
 
 // Library build: one ES + CJS module per source file so apps only ship what they import.
 export default defineConfig({
@@ -15,6 +16,8 @@ export default defineConfig({
     },
   },
   test: {
+    // tests import the docs examples, which import "seaglass-ui"
+    alias: { "seaglass-ui": fileURLToPath(new URL("./src/index.ts", import.meta.url)) },
     environment: "jsdom",
     globals: true,
     setupFiles: ["tests/setup.ts"],

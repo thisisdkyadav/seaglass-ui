@@ -1,4 +1,4 @@
-import { Tabs, TabsList, Tab } from "seaglass-ui";
+import { Tabs, TabsList, Tab, TabsContent } from "seaglass-ui";
 
 export default function Variants() {
   return (
@@ -10,6 +10,7 @@ export default function Variants() {
           <Tab value="closed">Closed</Tab>
           <Tab value="draft" disabled>Drafts</Tab>
         </TabsList>
+        {["all", "open", "closed", "draft"].map((v) => <TabsContent key={v} value={v} className="site-muted">Showing {v} issues.</TabsContent>)}
       </Tabs>
       <Tabs defaultValue="traffic" variant="line" tone="periwinkle">
         <TabsList>
@@ -17,6 +18,7 @@ export default function Variants() {
           <Tab value="sales">Sales</Tab>
           <Tab value="funnels">Funnels</Tab>
         </TabsList>
+        {["traffic", "sales", "funnels"].map((v) => <TabsContent key={v} value={v} className="site-muted">The {v} report.</TabsContent>)}
       </Tabs>
     </div>
   );

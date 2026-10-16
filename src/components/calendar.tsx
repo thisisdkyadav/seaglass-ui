@@ -196,7 +196,7 @@ export function DatePicker({ placeholder = "Pick a date", format = { dateStyle: 
         {date ? <span>{f.format(date)}</span> : <span className="sg-combobox-placeholder">{placeholder}</span>}
       </P.Trigger>
       <P.Portal>
-        <P.Content className="sg-popover sg-pebble sg-popover-surface" data-tone="clear" data-depth="md" data-padding="sm" sideOffset={8} align="start">
+        <P.Content aria-label="Choose a date" className="sg-popover sg-pebble sg-popover-surface" data-tone="clear" data-depth="md" data-padding="sm" sideOffset={8} align="start">
           <Calendar {...cal} locale={locale} value={date} onValueChange={(d) => { setDate(d); if (d) setOpen(false); }} />
         </P.Content>
       </P.Portal>
@@ -208,24 +208,27 @@ export interface DateRangePickerProps extends Omit<CalendarRangeProps, "mode" | 
   placeholder?: string;
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
+  invalid?: boolean;
+  id?: string;
   className?: string;
   "aria-label"?: string;
   /** Quick ranges shown beside the calendar. */
   presets?: Array<{ label: string; range: () => DateRange }>;
 }
 
-export function DateRangePicker({ placeholder = "Pick dates", size = "md", disabled, className, value, defaultValue, onValueChange, locale, presets, ...cal }: DateRangePickerProps) {
+export function DateRangePicker({ placeholder = "Pick dates", size = "md", disabled, invalid, id, className, value, defaultValue, onValueChange, locale, presets, ...cal }: DateRangePickerProps) {
   const [open, setOpen] = useState(false);
+  const control = useFieldControlProps({ id, disabled, "aria-invalid": invalid });
   const [r, setR] = useControllableState<DateRange>({ value, defaultValue: defaultValue ?? { from: null, to: null }, onChange: onValueChange });
   const f = useMemo(() => new Intl.DateTimeFormat(locale, { month: "short", day: "numeric" }), [locale]);
   return (
     <P.Root open={open} onOpenChange={setOpen}>
-      <P.Trigger disabled={disabled} aria-label={cal["aria-label"]} data-size={size} className={cx("sg-select-trigger sg-well", className)}>
+      <P.Trigger id={control.id} disabled={control.disabled} aria-label={cal["aria-label"]} aria-invalid={control["aria-invalid"]} aria-describedby={control["aria-describedby"]} data-size={size} className={cx("sg-select-trigger sg-well", className)}>
         <CalendarIcon className="sg-select-lead" width={17} height={17} />
         {r.from ? <span>{f.format(r.from)} – {r.to ? f.format(r.to) : "…"}</span> : <span className="sg-combobox-placeholder">{placeholder}</span>}
       </P.Trigger>
       <P.Portal>
-        <P.Content className="sg-popover sg-pebble sg-popover-surface sg-range-popover" data-tone="clear" data-depth="md" data-padding="sm" sideOffset={8} align="start">
+        <P.Content aria-label="Choose dates" className="sg-popover sg-pebble sg-popover-surface sg-range-popover" data-tone="clear" data-depth="md" data-padding="sm" sideOffset={8} align="start">
           {presets && (
             <div className="sg-range-presets">
               {presets.map((p) => <button type="button" key={p.label} className="sg-menu-item" onClick={() => { setR(p.range()); setOpen(false); }}>{p.label}</button>)}

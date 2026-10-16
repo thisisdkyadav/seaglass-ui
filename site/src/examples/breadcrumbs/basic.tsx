@@ -5,6 +5,7 @@ export default function Basic() {
     <div style={{ display: "grid", gap: 18 }}>
       <Breadcrumbs items={[{ label: "Settings", href: "#" }, { label: "Billing" }]} />
       <Breadcrumbs
+        aria-label="Product location"
         maxItems={4}
         items={[
           { label: "Home", href: "#" },

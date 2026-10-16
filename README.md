@@ -24,6 +24,35 @@ export function App() {
 }
 ```
 
+### Font
+
+The components are designed around [Outfit](https://fonts.google.com/specimen/Outfit). The
+stylesheet does not bundle a font, so load it yourself, or set `--sg-font` to your own.
+
+```html
+<!-- from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+```
+
+```ts
+// or self-hosted: npm install @fontsource-variable/outfit
+import "@fontsource-variable/outfit";
+```
+
+With the self-hosted variable font, add `:root { --sg-font: "Outfit Variable", sans-serif; }`.
+Without either, the stack falls back to Google Sans, Roboto and then the system UI font.
+
+### Requirements
+
+- **React 18 or 19.** Works in Server Components frameworks. Every module is marked `"use client"`.
+- **Browsers:** Chrome / Edge 108+, Firefox 101+, Safari 15.4+ (iOS 15.4+). These are the
+  versions that support `@layer` and `dvh` units, which the stylesheet depends on.
+- `backdrop-filter` (the frost) and `mask-image` (the sidebar's fades) degrade gracefully. Without
+  them, surfaces stay tinted and readable, but are not blurred.
+- Text colours meet WCAG AA contrast (4.5:1) in both themes. CI checks this on every docs page.
+
 ## Architecture
 
 - **React components, directly.** No vanilla core with wrappers on top. React is the target, and
@@ -110,10 +139,16 @@ entry to `registry.ts`. The page, the sidebar link and the search entry are gene
 ```bash
 npm run dev                 # docs site on http://localhost:5310
 npm run example:dashboard   # sample dashboard app on http://localhost:5311
-npm test                    # vitest + Testing Library
+npm test                    # vitest: unit, keyboard and axe tests in jsdom
 npm run typecheck
 npm run build               # dist/: ESM, CJS, .d.ts and seaglass.css
+npm run lint:pkg            # publint + are-the-types-wrong on the packed package
+npm run test:smoke          # installs the packed tarball into a fresh project (after build)
+npm run build:site && npm run test:e2e   # axe with colour contrast in Chromium, every route, both themes
 ```
+
+`test:e2e` uses Playwright's Chromium (`npx playwright install chromium`), or set
+`CHROMIUM=/path/to/chrome`.
 
 ## Deploy the docs site
 

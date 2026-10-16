@@ -1,4 +1,4 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import { forwardRef, useId, type HTMLAttributes, type ReactNode } from "react";
 import { Separator as S, Progress as P } from "radix-ui";
 import { cx } from "../lib/cx";
 import type { Tone } from "../lib/types";
@@ -60,8 +60,10 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   { value = null, max = 100, tone = "aqua", size = "md", label, showValue, formatValue, className, ...rest }, ref,
 ) {
   const pct = value == null ? null : Math.max(0, Math.min(100, (value / max) * 100));
+  const labelId = useId();
+  const named = label != null && !rest["aria-label"] && !rest["aria-labelledby"];
   const bar = (
-    <P.Root ref={ref} value={value} max={max} data-tone={tone} data-size={size} className={cx("sg-progress sg-well", !label && !showValue && className)} {...rest}>
+    <P.Root ref={ref} value={value} max={max} data-tone={tone} data-size={size} aria-labelledby={named ? labelId : undefined} className={cx("sg-progress sg-well", !label && !showValue && className)} {...rest}>
       <P.Indicator className="sg-progress-fill" data-indeterminate={pct == null ? "" : undefined} style={pct == null ? undefined : { width: `${pct}%` }} />
     </P.Root>
   );
@@ -69,7 +71,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   return (
     <div className={cx("sg-progress-field", className)}>
       <div className="sg-progress-row">
-        <span>{label}</span>
+        <span id={labelId}>{label}</span>
         {showValue && value != null && <span className="sg-progress-value">{formatValue ? formatValue(value, max) : `${Math.round(pct!)}%`}</span>}
       </div>
       {bar}

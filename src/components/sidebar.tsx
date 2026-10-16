@@ -238,9 +238,14 @@ export function SidebarExpandedOnly({ children }: { children: ReactNode }) {
   return useSidebar().collapsed ? null : <>{children}</>;
 }
 
+export interface SidebarInsetProps extends HTMLAttributes<HTMLElement> {
+  /** Render a `<div>` when the inset is not the page's main content (a nested demo, a panel). @default "main" */
+  as?: "main" | "div";
+}
+
 /** The page next to the sidebar. */
-export const SidebarInset = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(function SidebarInset({ className, ...rest }, ref) {
-  return <main ref={ref} className={cx("sg-sidebar-inset", className)} {...rest} />;
+export const SidebarInset = forwardRef<HTMLElement, SidebarInsetProps>(function SidebarInset({ as: Tag = "main", className, ...rest }, ref) {
+  return <Tag ref={ref as React.Ref<HTMLDivElement>} className={cx("sg-sidebar-inset", className)} {...rest} />;
 });
 
 /* ---------- Toggles ---------- */
@@ -315,6 +320,8 @@ export function SidebarSearch({ placeholder = "Jump to…", className }: { place
 /* ---------- Nav tree ---------- */
 export interface SidebarNavProps {
   sections: NavSection[];
+  /** Name for the navigation landmark. @default "Sections" */
+  "aria-label"?: string;
   activeId?: string;
   /** Called when a leaf is chosen (click, Enter, flyout, search). */
   onNavigate?: (item: NavItem) => void;
@@ -349,7 +356,7 @@ function ancestorsOf(sections: NavSection[], id?: string): string[] {
   return [];
 }
 
-export function SidebarNav({ sections, activeId, onNavigate, renderLink, className }: SidebarNavProps) {
+export function SidebarNav({ sections, activeId, onNavigate, renderLink, className, "aria-label": label = "Sections" }: SidebarNavProps) {
   const s = useSidebar();
   const q = s.query.trim().toLowerCase();
   const trail = useMemo(() => ancestorsOf(sections, activeId), [sections, activeId]);
@@ -394,7 +401,7 @@ export function SidebarNav({ sections, activeId, onNavigate, renderLink, classNa
   };
 
   return (
-    <nav ref={navRef} className={cx("sg-sidebar-content sg-nav", className)} onKeyDown={onKeyDown} aria-label="Sections">
+    <nav ref={navRef} className={cx("sg-sidebar-content sg-nav", className)} onKeyDown={onKeyDown} aria-label={label}>
       {sections.map((sec) => {
         const items = q ? sec.items.filter((it) => matches(it, q)) : sec.items;
         if (!items.length) return null;

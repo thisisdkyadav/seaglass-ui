@@ -50,6 +50,7 @@ export function DocsLayout({ active, crumbs, toc, children }: { active: string; 
           <TopTrigger />
           <Breadcrumbs
             className="site-crumbs"
+            aria-label="You are here"
             items={crumbs.map((c) => ({ label: c.label, href: c.to }))}
             renderLink={(c, children) => <Link to={c.href!}>{children}</Link>}
           />
@@ -60,7 +61,7 @@ export function DocsLayout({ active, crumbs, toc, children }: { active: string; 
           </div>
         </header>
         <div className={toc?.length ? "site-doc-grid" : "site-doc-grid site-doc-grid-full"}>
-          <main className="site-main" id="main">{children}</main>
+          <div className="site-main" id="main">{children}</div>
           {!!toc?.length && <Toc items={toc} />}
         </div>
         <footer className="site-doc-footer">

@@ -48,7 +48,7 @@ export { Breadcrumbs, Pagination, type BreadcrumbsProps, type Crumb, type Pagina
 export {
   SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarInset, SidebarTrigger, SidebarSearch,
   SidebarNav, SidebarButton, SidebarExpandedOnly, useSidebar,
-  type SidebarProviderProps, type SidebarProps, type SidebarNavProps, type NavItem, type NavSection, type LinkProps, type SidebarButtonProps,
+  type SidebarProviderProps, type SidebarProps, type SidebarNavProps, type SidebarInsetProps, type NavItem, type NavSection, type LinkProps, type SidebarButtonProps,
 } from "./components/sidebar";
 
 // data display
