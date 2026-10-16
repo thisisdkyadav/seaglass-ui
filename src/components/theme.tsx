@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { Direction } from "radix-ui";
 import { useMediaQuery } from "../hooks/use-media-query";
 import { useHotkeys } from "../hooks/use-hotkeys";
 
@@ -26,6 +27,11 @@ export interface ThemeProviderProps {
   toggleHotkey?: string | false;
   /** Element that receives data-sg-theme. Default document.documentElement. */
   target?: () => HTMLElement;
+  /**
+   * Writing direction. Sets dir on the target element and tells every component, so arrow keys,
+   * menus, sliders and the sidebar follow it. Leave unset to keep whatever dir the page has (ltr).
+   */
+  dir?: "ltr" | "rtl";
 }
 
 /**
@@ -34,7 +40,7 @@ export interface ThemeProviderProps {
  */
 export function ThemeProvider({
   children, defaultTheme = "system", theme: controlled, onThemeChange,
-  storageKey = "sg-theme", toggleHotkey = "shift+d", target,
+  storageKey = "sg-theme", toggleHotkey = "shift+d", target, dir,
 }: ThemeProviderProps) {
   const [inner, setInner] = useState<ThemeSetting>(() => {
     if (storageKey && typeof window !== "undefined") {
@@ -62,13 +68,17 @@ export function ThemeProvider({
     document.body.classList.add("sg-root");
   }, [resolved, target]);
 
+  useEffect(() => {
+    if (dir) (target?.() ?? document.documentElement).setAttribute("dir", dir);
+  }, [dir, target]);
+
   useHotkeys(toggleHotkey || "", toggle, { enabled: !!toggleHotkey });
 
   const value = useMemo(() => ({ theme, resolved, setTheme, toggle }), [theme, resolved, setTheme, toggle]);
   return (
     <Ctx.Provider value={value}>
       <div className="sg-lamp" aria-hidden />
-      {children}
+      {dir ? <Direction.Provider dir={dir}>{children}</Direction.Provider> : children}
     </Ctx.Provider>
   );
 }
@@ -78,3 +88,9 @@ export function useTheme(): ThemeCtx {
   if (!ctx) throw new Error("useTheme must be used inside <ThemeProvider>");
   return ctx;
 }
+
+/** The current writing direction, from ThemeProvider dir (or a Radix DirectionProvider). */
+export const useDirection = (): "ltr" | "rtl" => Direction.useDirection();
+
+/** Set the direction for part of a page. Pair it with a dir attribute on an element: <DirectionProvider dir="rtl"><div dir="rtl">…</div></DirectionProvider> */
+export const DirectionProvider = Direction.Provider;

@@ -2,7 +2,7 @@ import {
   createContext, forwardRef, useCallback, useContext, useEffect, useMemo, useRef, useState,
   type CSSProperties, type HTMLAttributes, type KeyboardEvent, type ReactNode,
 } from "react";
-import { Dialog as D, DropdownMenu as DM, Tooltip as T } from "radix-ui";
+import { Dialog as D, Direction, DropdownMenu as DM, Tooltip as T } from "radix-ui";
 import { cx } from "../lib/cx";
 import type { Tone } from "../lib/types";
 import { ChevronDown, ChevronRight, MenuIcon, PanelLeft, SearchIcon, XIcon } from "../lib/icons";
@@ -194,10 +194,12 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar({ 
 
 function ResizeHandle() {
   const s = useSidebar();
+  // The sidebar sits at the inline start, so in RTL it grows towards the left.
+  const sign = Direction.useDirection() === "rtl" ? -1 : 1;
   const onPointerDown = (e: React.PointerEvent) => {
     e.preventDefault();
     const startX = e.clientX, startW = s.width;
-    const move = (ev: PointerEvent) => s.setWidth(startW + ev.clientX - startX);
+    const move = (ev: PointerEvent) => s.setWidth(startW + (ev.clientX - startX) * sign);
     const up = () => { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); document.body.style.cursor = ""; };
     document.body.style.cursor = "col-resize";
     window.addEventListener("pointermove", move);
@@ -216,8 +218,8 @@ function ResizeHandle() {
       onPointerDown={onPointerDown}
       onDoubleClick={() => s.setWidth(s.defaultWidth)}
       onKeyDown={(e) => {
-        if (e.key === "ArrowLeft") { e.preventDefault(); s.setWidth(s.width - 16); }
-        if (e.key === "ArrowRight") { e.preventDefault(); s.setWidth(s.width + 16); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); s.setWidth(s.width - 16 * sign); }
+        if (e.key === "ArrowRight") { e.preventDefault(); s.setWidth(s.width + 16 * sign); }
       }}
     />
   );
@@ -435,6 +437,7 @@ interface NodeProps { item: NavItem; depth: number; activeId?: string; trail: st
 
 function NavNode({ item, depth, activeId, trail, q, go, renderLink }: NodeProps) {
   const s = useSidebar();
+  const keys = arrowKeys(Direction.useDirection());
   const active = item.id === activeId;
   const inTrail = trail.includes(item.id);
   const kids = item.children ? (q && !item.label.toLowerCase().includes(q) ? item.children.filter((c) => matches(c, q)) : item.children) : null;
@@ -454,14 +457,14 @@ function NavNode({ item, depth, activeId, trail, q, go, renderLink }: NodeProps)
     return (
       <li>
         <RailTip label={item.label} badge={item.badge}>
-          {leaf(item, active, go, renderLink, <>{lead}<span className="sg-visually-hidden">{item.label}</span>{item.badge != null && <span className="sg-count sg-nav-rail-count" data-tone={item.badgeTone ?? "rose"}>{item.badge}</span>}</>)}
+          {leaf(item, active, go, renderLink, <>{lead}<span className="sg-visually-hidden">{item.label}</span>{item.badge != null && <span className="sg-count sg-nav-rail-count" data-tone={item.badgeTone ?? "rose"}>{item.badge}</span>}</>, keys)}
         </RailTip>
       </li>
     );
   }
 
   if (!kids) {
-    return <li>{leaf(item, active, go, renderLink, <>{lead}<span className="sg-nav-label">{item.label}</span>{tail}</>)}</li>;
+    return <li>{leaf(item, active, go, renderLink, <>{lead}<span className="sg-nav-label">{item.label}</span>{tail}</>, keys)}</li>;
   }
 
   return (
@@ -475,12 +478,12 @@ function NavNode({ item, depth, activeId, trail, q, go, renderLink }: NodeProps)
         disabled={item.disabled}
         onClick={() => s.setOpen(item.id, !isOpen)}
         onKeyDown={(e) => {
-          if (e.key === "ArrowRight") {
+          if (e.key === keys.open) {
             e.preventDefault();
             if (!isOpen) s.setOpen(item.id, true);
             else e.currentTarget.parentElement?.querySelector<HTMLElement>(".sg-nav-sub [data-sg-nav-item]")?.focus();
           }
-          if (e.key === "ArrowLeft") {
+          if (e.key === keys.close) {
             e.preventDefault();
             if (isOpen) s.setOpen(item.id, false);
             else focusParent(e.currentTarget);
@@ -503,7 +506,10 @@ function focusParent(el: HTMLElement) {
   el.closest(".sg-nav-sub")?.closest("li")?.querySelector<HTMLElement>(":scope > [data-sg-nav-item]")?.focus();
 }
 
-function leaf(item: NavItem, active: boolean, go: (i: NavItem) => void, renderLink: SidebarNavProps["renderLink"], children: ReactNode) {
+/** Arrow keys that open and close a tree branch: towards and away from the inline end. */
+const arrowKeys = (dir: "ltr" | "rtl") => (dir === "rtl" ? { open: "ArrowLeft", close: "ArrowRight" } : { open: "ArrowRight", close: "ArrowLeft" });
+
+function leaf(item: NavItem, active: boolean, go: (i: NavItem) => void, renderLink: SidebarNavProps["renderLink"], children: ReactNode, keys = arrowKeys("ltr")) {
   const props: LinkProps = {
     href: item.href,
     className: "sg-nav-item",
@@ -511,7 +517,7 @@ function leaf(item: NavItem, active: boolean, go: (i: NavItem) => void, renderLi
     "data-sg-nav-item": "",
     "data-active": active ? "" : undefined,
     onClick: (e) => { if (item.disabled) { e.preventDefault(); return; } go(item); },
-    onKeyDown: (e) => { if (e.key === "ArrowLeft") { e.preventDefault(); focusParent(e.currentTarget); } },
+    onKeyDown: (e) => { if (e.key === keys.close) { e.preventDefault(); focusParent(e.currentTarget); } },
     children,
   };
   if (renderLink) return renderLink(item, props);
@@ -520,11 +526,12 @@ function leaf(item: NavItem, active: boolean, go: (i: NavItem) => void, renderLi
 
 /* ---------- rail helpers ---------- */
 function RailTip({ label, shortcut, badge, children }: { label: string; shortcut?: string; badge?: ReactNode; children: ReactNode }) {
+  const side = Direction.useDirection() === "rtl" ? "left" : "right";
   return (
     <T.Root>
       <T.Trigger asChild>{children}</T.Trigger>
       <T.Portal>
-        <T.Content className="sg-tooltip" side="right" sideOffset={14}>
+        <T.Content className="sg-tooltip" side={side} sideOffset={14}>
           {label}{badge != null && <span className="sg-tooltip-badge">{badge}</span>}{shortcut && <Kbd keys={shortcut} className="sg-tooltip-kbd" />}
         </T.Content>
       </T.Portal>
@@ -534,6 +541,7 @@ function RailTip({ label, shortcut, badge, children }: { label: string; shortcut
 
 function RailFlyout({ item, activeId, active, go, renderLink }: { item: NavItem; activeId?: string; active: boolean; go: (i: NavItem) => void; renderLink?: SidebarNavProps["renderLink"] }) {
   const [open, setOpen] = useState(false);
+  const dir = Direction.useDirection();
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const hover = (v: boolean, delay: number) => { clearTimeout(timer.current); timer.current = setTimeout(() => setOpen(v), delay); };
   useEffect(() => () => clearTimeout(timer.current), []);
@@ -573,7 +581,7 @@ function RailFlyout({ item, activeId, active, go, renderLink }: { item: NavItem;
           aria-label={item.label}
           onPointerEnter={() => hover(true, 120)}
           onPointerLeave={() => hover(false, 250)}
-          onKeyDown={(e) => { if (e.key === "ArrowRight") { e.preventDefault(); setOpen(true); } }}
+          onKeyDown={(e) => { if (e.key === arrowKeys(dir).open) { e.preventDefault(); setOpen(true); } }}
         >
           {item.dot ? <span className="sg-nav-dot" data-tone={item.dot} /> : <span className="sg-nav-icon" aria-hidden>{item.icon}</span>}
           {item.badge != null && <span className="sg-count sg-nav-rail-count" data-tone={item.badgeTone ?? "rose"}>{item.badge}</span>}
@@ -581,7 +589,7 @@ function RailFlyout({ item, activeId, active, go, renderLink }: { item: NavItem;
       </DM.Trigger>
       <DM.Portal>
         <DM.Content
-          side="right"
+          side={dir === "rtl" ? "left" : "right"}
           align="start"
           sideOffset={18}
           className="sg-menu sg-pebble sg-popover-surface sg-flyout"

@@ -70,7 +70,7 @@
 .sg-badge[data-tone="clear"], .sg-badge[data-tone="neutral"] { color: #3b404b; }
 .sg-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: hsl(var(--h) 60% 50%); }
 .sg-badge[data-tone="clear"] .sg-badge-dot, .sg-badge[data-tone="neutral"] .sg-badge-dot { background: #6d7280; }
-.sg-badge-icon { display: inline-flex; margin-left: -2px; }
+.sg-badge-icon { display: inline-flex; margin-inline-start: -2px; }
 .sg-badge-icon > svg { width: 12px; height: 12px; }
 
 /* Count shares the badge's shape at the small size */
@@ -100,7 +100,7 @@
 .sg-avatar-fallback { display: inline-flex; align-items: center; justify-content: center; }
 .sg-avatar-fallback > svg { width: 55%; height: 55%; }
 .sg-avatar-status {
-  position: absolute; right: -1px; bottom: -1px; z-index: 1;
+  position: absolute; inset-inline-end: -1px; bottom: -1px; z-index: 1;
   width: clamp(8px, 28%, 14px); aspect-ratio: 1; border-radius: 50%;
   box-shadow: 0 0 0 2px var(--sg-page);
   background: hsl(145 55% 48%);
@@ -108,9 +108,9 @@
 .sg-avatar-status[data-status="away"] { background: hsl(40 90% 55%); }
 .sg-avatar-status[data-status="busy"] { background: hsl(358 70% 58%); }
 .sg-avatar-status[data-status="offline"] { background: hsl(220 10% 70%); }
-.sg-avatar-group { display: inline-flex; align-items: center; padding-left: 6px; }
-.sg-avatar-group > .sg-avatar { margin-left: -6px; }
-.sg-avatar-group[data-size="md"] > .sg-avatar, .sg-avatar-group[data-size="lg"] > .sg-avatar { margin-left: -8px; }
+.sg-avatar-group { display: inline-flex; align-items: center; padding-inline-start: 6px; }
+.sg-avatar-group > .sg-avatar { margin-inline-start: -6px; }
+.sg-avatar-group[data-size="md"] > .sg-avatar, .sg-avatar-group[data-size="lg"] > .sg-avatar { margin-inline-start: -8px; }
 .sg-avatar-more { color: #3b404b; }
 
 /* ================= Card ================= */
@@ -169,7 +169,7 @@
   transition: width .4s var(--sg-ease);
 }
 .sg-progress-fill[data-indeterminate] { width: 35%; animation: sg-indeterminate 1.3s var(--sg-ease) infinite; }
-@keyframes sg-indeterminate { from { transform: translateX(-100%); } to { transform: translateX(290%); } }
+@keyframes sg-indeterminate { from { transform: translateX(calc(-100% * var(--sg-dir))); } to { transform: translateX(calc(290% * var(--sg-dir))); } }
 .sg-progress-field { display: grid; gap: 6px; }
 .sg-progress-row { display: flex; justify-content: space-between; gap: 8px; font-size: var(--sg-text-sm); font-weight: 500; }
 .sg-progress-value { font-variant-numeric: tabular-nums; opacity: .75; }

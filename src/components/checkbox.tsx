@@ -8,7 +8,7 @@ import { useFieldControlProps } from "./field";
 /* ---------- Checkbox: a small clear stone that turns tinted when checked ---------- */
 export interface CheckboxProps extends React.ComponentPropsWithoutRef<typeof C.Root> {
   tone?: Tone;
-  /** Inline label to the right. */
+  /** Inline label after the box (to the right in LTR, left in RTL). */
   label?: ReactNode;
   description?: ReactNode;
 }

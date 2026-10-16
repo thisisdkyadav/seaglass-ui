@@ -32,6 +32,14 @@
   background: radial-gradient(circle 1100px at 30% 12%, transparent 30%, rgb(40 28 14 / .14) 70%, rgb(40 28 14 / .28) 100%);
 }
 
+/* Writing direction. Layout uses logical properties and flips by itself; the few transforms
+   and arrows that point along the inline axis multiply by --sg-dir or mirror. The lamp
+   stays at the top left in both directions, so shadows and highlights do not flip. */
+:root, [dir="ltr"] { --sg-dir: 1; }
+[dir="rtl"] { --sg-dir: -1; }
+[dir="rtl"] :is(.sg-crumb-sep, .sg-page, .sg-calendar-nav) > svg,
+[dir="rtl"] :is(.sg-menu-chevron, .sg-nav-chevron) { scale: -1 1; }
+
 .sg-visually-hidden {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;

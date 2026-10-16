@@ -66,7 +66,7 @@
 .sg-alert-description > p { margin: 0; }
 .sg-alert-actions { display: flex; flex-wrap: wrap; gap: var(--sg-space-2); margin-block-start: var(--sg-space-2); }
 .sg-alert-close {
-  display: grid; place-items: center; flex: none; width: 26px; height: 26px; margin: -1px -6px 0 0; margin-inline: 0 -6px;
+  display: grid; place-items: center; flex: none; width: 26px; height: 26px; margin-block: -1px 0; margin-inline: 0 -6px;
   border: 0; border-radius: 50%; background: none; color: inherit; opacity: .6; cursor: pointer;
 }
 .sg-alert-close:hover { opacity: 1; background: rgb(255 255 255 / .5); }

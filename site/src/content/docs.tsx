@@ -52,7 +52,7 @@ export const docs: Doc[] = [
   {
     slug: "installation", title: "Installation",
     summary: "Add the package, import the stylesheet once and wrap your app.",
-    toc: [{ id: "install", label: "Install" }, { id: "styles", label: "Import the styles" }, { id: "providers", label: "Add the providers" }, { id: "font", label: "Font" }, { id: "frameworks", label: "Frameworks" }],
+    toc: [{ id: "install", label: "Install" }, { id: "styles", label: "Import the styles" }, { id: "providers", label: "Add the providers" }, { id: "font", label: "Font" }, { id: "support", label: "Browser support" }, { id: "frameworks", label: "Frameworks" }],
     Body: () => (
       <>
         <H2 id="install">Install</H2>
@@ -60,7 +60,7 @@ export const docs: Doc[] = [
         <CodeBlock lang="sh" code="npm install seaglass-ui" />
         <p className="site-muted">Using pnpm, yarn or bun? <C>pnpm add seaglass-ui</C> · <C>yarn add seaglass-ui</C> · <C>bun add seaglass-ui</C></p>
         <H2 id="styles">Import the styles</H2>
-        <p>Import the stylesheet once, at your app's entry point. It is about 68 kB of plain CSS inside <C>@layer seaglass</C>, so your own unlayered CSS always wins.</p>
+        <p>Import the stylesheet once, at your app's entry point. It is about 87 kB of plain CSS (17 kB gzipped) inside <C>@layer seaglass</C>, so your own unlayered CSS always wins.</p>
         <CodeBlock code={`import "seaglass-ui/styles.css";`} />
         <H2 id="providers">Add the providers</H2>
         <p>
@@ -88,6 +88,19 @@ export function App() {
         <H2 id="font">Font</H2>
         <p>The components are designed around <a href="https://fonts.google.com/specimen/Outfit" target="_blank" rel="noreferrer">Outfit</a>, weights 400–700. It is not bundled; load it however you load fonts, or set <C>--sg-font</C> to your own.</p>
         <CodeBlock lang="sh" code={`<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />`} />
+        <p>Or self-host it from npm, which avoids a request to Google:</p>
+        <CodeBlock code={`// npm install @fontsource-variable/outfit
+import "@fontsource-variable/outfit";
+
+// then, in your CSS
+:root { --sg-font: "Outfit Variable", sans-serif; }`} />
+        <p>In Next.js, <C>next/font/google</C> works too: pass its <C>style.fontFamily</C> to <C>--sg-font</C>.</p>
+        <H2 id="support">Browser support</H2>
+        <p>
+          Chrome and Edge 108+, Firefox 101+, Safari 15.4+ (iOS 15.4+). The frost (<C>backdrop-filter</C>) degrades
+          gracefully: without it, surfaces stay tinted and readable but are not blurred. Text meets WCAG AA contrast
+          in both themes, which CI checks on every docs page.
+        </p>
         <H2 id="frameworks">Frameworks</H2>
         <ul className="site-list">
           <li><b>Vite, Create React App, Parcel</b> — works as is.</li>
@@ -195,6 +208,46 @@ export function App() {
     document.documentElement.dataset.sgTheme = dark ? "dark" : "light";
   } catch (e) {}
 </script>`} />
+      </>
+    ),
+  },
+  {
+    slug: "rtl", title: "Right-to-left",
+    summary: "Arabic, Hebrew, Persian and Urdu layouts, with one prop.",
+    toc: [{ id: "usage", label: "Usage" }, { id: "what-flips", label: "What flips" }, { id: "part", label: "Part of a page" }],
+    Body: () => (
+      <>
+        <H2 id="usage">Usage</H2>
+        <p>
+          Pass <C>dir="rtl"</C> to <C>ThemeProvider</C>. It sets <C>dir</C> on <C>&lt;html&gt;</C> and tells every
+          component, so arrow keys, menus, sliders, tabs and the sidebar follow the reading direction.
+        </p>
+        <CodeBlock code={`<html lang="ar" dir="rtl">   {/* set it in the server-rendered HTML too, so the first paint is right */}
+
+<ThemeProvider dir="rtl">
+  <App />
+</ThemeProvider>`} />
+        <Example example={{ id: "theme/rtl", title: "Right-to-left" }} />
+        <H2 id="what-flips">What flips</H2>
+        <ul>
+          <li>Spacing, alignment and positions: the stylesheet uses logical properties (<C>margin-inline-start</C>, <C>inset-inline-end</C>, <C>text-align: start</C>), so layout mirrors with no extra CSS.</li>
+          <li>Arrows that mean "next" or "deeper": breadcrumb separators, pagination, calendar navigation, sub-menu and tree chevrons.</li>
+          <li>Keyboard: ← and → swap in the calendar, the sidebar tree and its resize handle. Radix handles tabs, menus, sliders, radio and toggle groups.</li>
+          <li>Motion along the inline axis: switch thumbs, the sidebar drawer, indeterminate progress.</li>
+        </ul>
+        <p>
+          The light does not flip. The lamp stays at the top left in both directions, so shadows and highlights are
+          the same. That keeps the material consistent, as with a real object turned around under a fixed light.
+          <C>Sheet</C> sides and <C>Toaster</C> positions are physical (<C>side="right"</C> means right).
+        </p>
+        <H2 id="part">Part of a page</H2>
+        <p>For a right-to-left island inside a left-to-right page, use <C>DirectionProvider</C> with a <C>dir</C> attribute on an element:</p>
+        <CodeBlock code={`import { DirectionProvider } from "seaglass-ui";
+
+<DirectionProvider dir="rtl">
+  <div dir="rtl" lang="he">…</div>
+</DirectionProvider>`} />
+        <p><C>useDirection()</C> returns the current direction for your own components.</p>
       </>
     ),
   },

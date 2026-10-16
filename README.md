@@ -52,6 +52,8 @@ Without either, the stack falls back to Google Sans, Roboto and then the system 
 - `backdrop-filter` (the frost) and `mask-image` (the sidebar's fades) degrade gracefully. Without
   them, surfaces stay tinted and readable, but are not blurred.
 - Text colours meet WCAG AA contrast (4.5:1) in both themes. CI checks this on every docs page.
+- **Right-to-left:** `<ThemeProvider dir="rtl">`. Layout uses logical properties, and arrows,
+  keyboard handling and inline motion follow the direction. See [the RTL guide](https://seaglass.awacxo.com/docs/rtl).
 
 ## Architecture
 

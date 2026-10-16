@@ -134,8 +134,8 @@
   transition: transform .3s var(--sg-spring);
 }
 .sg-switch[data-size="sm"] .sg-switch-thumb { width: 16px; height: 16px; }
-.sg-switch[data-state="checked"] .sg-switch-thumb { transform: translateX(16px); }
-.sg-switch[data-size="sm"][data-state="checked"] .sg-switch-thumb { transform: translateX(12px); }
+.sg-switch[data-state="checked"] .sg-switch-thumb { transform: translateX(calc(16px * var(--sg-dir))); }
+.sg-switch[data-size="sm"][data-state="checked"] .sg-switch-thumb { transform: translateX(calc(12px * var(--sg-dir))); }
 
 /* ================= Slider ================= */
 .sg-slider { position: relative; display: flex; align-items: center; width: 100%; height: 22px; touch-action: none; user-select: none; cursor: pointer; }
@@ -175,20 +175,20 @@
 /* ================= Select / Combobox / DatePicker trigger ================= */
 .sg-select-trigger {
   display: inline-flex; align-items: center; gap: var(--sg-space-2);
-  width: 100%; min-width: 0; height: var(--sg-control-md); padding: 0 10px 0 var(--sg-space-3);
+  width: 100%; min-width: 0; height: var(--sg-control-md); padding-block: 0; padding-inline: var(--sg-space-3) 10px;
   border: 0; border-radius: var(--sg-radius-md); outline: 0;
-  font: inherit; font-size: var(--sg-text-md); color: var(--sg-ink); text-align: left;
+  font: inherit; font-size: var(--sg-text-md); color: var(--sg-ink); text-align: start;
   cursor: pointer;
   transition: box-shadow var(--sg-dur);
 }
 .sg-select-trigger > span:not(.sg-select-icon) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sg-select-trigger[data-size="sm"] { height: var(--sg-control-sm); padding-left: 10px; border-radius: var(--sg-radius-sm); font-size: var(--sg-text-sm); }
-.sg-select-trigger[data-size="lg"] { height: var(--sg-control-lg); padding-left: 14px; font-size: var(--sg-text-lg); }
+.sg-select-trigger[data-size="sm"] { height: var(--sg-control-sm); padding-inline-start: 10px; border-radius: var(--sg-radius-sm); font-size: var(--sg-text-sm); }
+.sg-select-trigger[data-size="lg"] { height: var(--sg-control-lg); padding-inline-start: 14px; font-size: var(--sg-text-lg); }
 .sg-select-trigger:focus-visible, .sg-select-trigger[data-state="open"] { box-shadow: var(--sg-well-shadow), var(--sg-focus-ring); }
 .sg-select-trigger[aria-invalid="true"] { box-shadow: var(--sg-well-shadow), var(--sg-invalid-ring); }
 .sg-select-trigger:disabled { opacity: .6; cursor: not-allowed; }
 .sg-select-trigger [data-placeholder], .sg-select-trigger[data-placeholder] > span:first-child, .sg-combobox-placeholder { color: var(--sg-ink-faint); }
-.sg-select-icon { display: inline-flex; flex: none; opacity: .55; margin-left: auto; transition: transform .25s var(--sg-ease); }
+.sg-select-icon { display: inline-flex; flex: none; opacity: .55; margin-inline-start: auto; transition: transform .25s var(--sg-ease); }
 .sg-select-trigger[data-state="open"] .sg-select-icon { transform: rotate(180deg); }
 .sg-select-lead { flex: none; opacity: .6; }
 .sg-popover-surface.sg-select-content { min-width: var(--radix-select-trigger-width); max-height: min(360px, var(--radix-select-content-available-height)); }
@@ -197,7 +197,7 @@
 .sg-combobox-trigger[data-size="sm"] { min-height: var(--sg-control-sm); padding-block: 3px; }
 .sg-combobox-value { display: inline-flex; align-items: center; gap: 8px; }
 .sg-combobox-chips { display: flex !important; flex-wrap: wrap; gap: var(--sg-space-1); white-space: normal !important; }
-.sg-combobox-chip { display: inline-flex; align-items: center; gap: 2px; height: 24px; padding: 0 4px 0 var(--sg-space-2); border-radius: var(--sg-radius-full); font-size: var(--sg-text-xs); font-weight: var(--sg-weight-medium); }
+.sg-combobox-chip { display: inline-flex; align-items: center; gap: 2px; height: 24px; padding-block: 0; padding-inline: var(--sg-space-2) 4px; border-radius: var(--sg-radius-full); font-size: var(--sg-text-xs); font-weight: var(--sg-weight-medium); }
 .sg-combobox-chip [role="button"] { display: grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; opacity: .6; cursor: pointer; }
 .sg-combobox-chip [role="button"]:hover { opacity: 1; background: rgb(60 70 90 / .1); }
 .sg-combobox-more { font-size: var(--sg-text-xs); font-weight: 600; color: var(--sg-ink-muted); align-self: center; }

@@ -114,6 +114,7 @@ a { color: inherit; }
 
 /* ───────────── code */
 .site-code { position: relative; margin: 14px 0; border-radius: var(--sg-radius-lg); background: var(--sg-well); box-shadow: var(--sg-well-shadow); }
+.site-code { direction: ltr; }
 .site-code pre { margin: 0; padding: 14px 52px 14px 16px; overflow: auto; font-family: var(--sg-font-mono); font-size: .8125rem; line-height: 1.6; tab-size: 2; }
 .site-code[data-lang="sh"] pre, .site-code[data-lang="css"] pre { color: var(--sg-ink); }
 .site-code .site-copy { position: absolute; top: 6px; right: 6px; }

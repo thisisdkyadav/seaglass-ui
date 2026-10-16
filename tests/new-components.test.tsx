@@ -2,7 +2,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
-import { Alert, Toggle, ToggleGroup, ToggleGroupItem, NumberInput, Field, ScrollArea, Text, Heading, Link, Stack, Grid } from "../src";
+import {
+  Alert, Toggle, ToggleGroup, ToggleGroupItem, NumberInput, Field, ScrollArea, Text, Heading, Link, Stack, Grid,
+  ThemeProvider, Calendar, DirectionProvider, useDirection,
+} from "../src";
 
 describe("Alert", () => {
   it("renders title, message and tone icon; dismiss calls back", async () => {
@@ -138,5 +141,29 @@ describe("ScrollArea, typography and layout", () => {
     expect(grid.style.gridTemplateColumns).toBe("repeat(3, minmax(0, 1fr))");
     expect(grid.style.gap).toBe("10px");
     expect(auto.style.gridTemplateColumns).toContain("auto-fill");
+  });
+});
+
+describe("right-to-left", () => {
+  it("ThemeProvider dir sets the attribute; Calendar swaps ← and →", async () => {
+    const u = userEvent.setup();
+    render(
+      <ThemeProvider dir="rtl" storageKey={false}>
+        <Calendar defaultValue={new Date(2026, 4, 13)} locale="en-GB" />
+      </ThemeProvider>,
+    );
+    expect(document.documentElement).toHaveAttribute("dir", "rtl");
+    await u.click(screen.getByRole("button", { name: /13 May 2026/ }));
+    await u.keyboard("{ArrowLeft}");
+    expect(screen.getByRole("button", { name: /14 May 2026/ })).toHaveFocus();
+    await u.keyboard("{ArrowRight}{ArrowRight}");
+    expect(screen.getByRole("button", { name: /12 May 2026/ })).toHaveFocus();
+    document.documentElement.removeAttribute("dir");
+  });
+  it("useDirection reads DirectionProvider", () => {
+    function Show() { return <span>{useDirection()}</span>; }
+    render(<><Show /><DirectionProvider dir="rtl"><Show /></DirectionProvider></>);
+    expect(screen.getByText("ltr")).toBeInTheDocument();
+    expect(screen.getByText("rtl")).toBeInTheDocument();
   });
 });

@@ -1,7 +1,7 @@
 /* Sea Glass — React components. Import the styles once:  import "seaglass-ui/styles.css"; */
 
 // foundation
-export { ThemeProvider, useTheme, type ThemeProviderProps, type ThemeSetting } from "./components/theme";
+export { ThemeProvider, useTheme, useDirection, DirectionProvider, type ThemeProviderProps, type ThemeSetting } from "./components/theme";
 export { Pebble, type PebbleProps } from "./components/pebble";
 export type { Tone, Depth, Size } from "./lib/types";
 export { toneFor } from "./lib/types";

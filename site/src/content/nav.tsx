@@ -1,5 +1,5 @@
 import type { NavSection } from "seaglass-ui";
-import { BookOpen, Download, Palette, Moon, Keyboard, Waves, LayoutGrid } from "lucide-react";
+import { BookOpen, Download, Palette, Moon, Keyboard, Waves, LayoutGrid, Languages } from "lucide-react";
 import { docs } from "./docs";
 import { registry, groups } from "./registry";
 
@@ -9,7 +9,7 @@ export const VERSION = "0.1.0";
 
 const docIcons: Record<string, React.ReactNode> = {
   introduction: <BookOpen size={20} />, installation: <Download size={20} />, theming: <Palette size={20} />,
-  "dark-mode": <Moon size={20} />, keyboard: <Keyboard size={20} />, design: <Waves size={20} />,
+  "dark-mode": <Moon size={20} />, rtl: <Languages size={20} />, keyboard: <Keyboard size={20} />, design: <Waves size={20} />,
 };
 
 export const sections: NavSection[] = [

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
-import { Popover as P } from "radix-ui";
+import { Direction, Popover as P } from "radix-ui";
 import { cx } from "../lib/cx";
 import { CalendarIcon, ChevronLeft, ChevronRight } from "../lib/icons";
 import { useControllableState } from "../hooks/use-controllable-state";
@@ -58,6 +58,7 @@ export function Calendar(props: CalendarProps) {
   const [month, setMonth] = useControllableState<Date>({ value: props.month, defaultValue: props.defaultMonth ?? new Date(anchor.getFullYear(), anchor.getMonth(), 1), onChange: props.onMonthChange });
   const [focus, setFocus] = useState<Date>(anchor);
   const [hover, setHover] = useState<Date | null>(null);
+  const rtl = Direction.useDirection() === "rtl";
   const grid = useRef<HTMLDivElement>(null);
   // the roving tab stop: the focused day if it is on show, else the same date in the first visible month
   const mi = (d: Date) => d.getFullYear() * 12 + d.getMonth();
@@ -98,7 +99,7 @@ export function Calendar(props: CalendarProps) {
 
   const onKey = (e: KeyboardEvent) => {
     const map: Record<string, () => Date> = {
-      ArrowLeft: () => addDays(cur, -1), ArrowRight: () => addDays(cur, 1),
+      ArrowLeft: () => addDays(cur, rtl ? 1 : -1), ArrowRight: () => addDays(cur, rtl ? -1 : 1),
       ArrowUp: () => addDays(cur, -7), ArrowDown: () => addDays(cur, 7),
       PageUp: () => addMonths(cur, e.shiftKey ? -12 : -1), PageDown: () => addMonths(cur, e.shiftKey ? 12 : 1),
       Home: () => addDays(cur, -((cur.getDay() - weekStartsOn + 7) % 7)),
