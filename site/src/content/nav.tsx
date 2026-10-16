@@ -5,7 +5,7 @@ import { registry, groups } from "./registry";
 
 /** Set this once the repository is public; the GitHub buttons stay hidden while it is empty. */
 export const REPO_URL = "https://github.com/thisisdkyadav/seaglass-ui";
-export const VERSION = "0.2.0";
+export const VERSION = "0.3.0";
 
 const docIcons: Record<string, React.ReactNode> = {
   introduction: <BookOpen size={20} />, installation: <Download size={20} />, theming: <Palette size={20} />,
