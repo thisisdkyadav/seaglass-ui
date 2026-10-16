@@ -1,0 +1,18 @@
+// Docs site: a static-assets-only Worker serving the Vite build at
+// https://seaglass.awacxo.com. Deploy with `npm run deploy:site`.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "seaglass-ui-docs",
+  "account_id": "63e9b25e40b623af8844714cc0cffbc7",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site/dist",
+    // client-side routes (/docs/…, /components/…) all load index.html
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "seaglass.awacxo.com", "custom_domain": true }
+  ],
+  "workers_dev": true,
+  "observability": { "enabled": true }
+}

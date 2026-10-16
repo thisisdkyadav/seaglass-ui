@@ -13,7 +13,7 @@
   ],
   "author": "Devesh Yadav",
   "license": "MIT",
-  "homepage": "https://github.com/thisisdkyadav/seaglass-ui#readme",
+  "homepage": "https://seaglass.awacxo.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thisisdkyadav/seaglass-ui.git"
@@ -52,7 +52,8 @@
     "build:site": "vite build --config site/vite.config.ts",
     "preview:site": "vite preview --config site/vite.config.ts",
     "example:dashboard": "vite --config examples/dashboard/vite.config.ts",
-    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+    "prepublishOnly": "npm run typecheck && npm test && npm run build",
+    "deploy:site": "npm run build:site && wrangler deploy"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -76,7 +77,8 @@
     "sugar-high": "^2.6.0",
     "typescript": "5.9",
     "vite": "^8.3.4",
-    "vitest": "^5.0.4"
+    "vitest": "^5.0.4",
+    "wrangler": "^4.151.0"
   },
   "publishConfig": {
     "access": "public"

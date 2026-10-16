@@ -4,6 +4,8 @@ A React component library built on the **sea glass** design language: every surf
 frosted, tumbled-glass pebble resting on white paper, lit by one fixed lamp at the top left.
 For the full design rationale, see [DESIGN.md](DESIGN.md).
 
+**Docs and live examples: https://seaglass.awacxo.com**
+
 ```bash
 npm install seaglass-ui
 ```
@@ -115,16 +117,27 @@ npm run build               # dist/: ESM, CJS, .d.ts and seaglass.css
 
 ## Deploy the docs site
 
+The docs live at https://seaglass.awacxo.com, served by a static-assets-only Cloudflare Worker
+(`wrangler.jsonc`, Worker `seaglass-ui-docs`, custom domain `seaglass.awacxo.com`).
+
+```bash
+npx wrangler login          # once
+npm run deploy:site         # build site/dist and deploy it
+```
+
+Unknown paths fall back to `index.html` (`not_found_handling: "single-page-application"`), so deep
+links like `/components/button` work and the client router takes over.
+
+To host the build elsewhere:
+
 ```bash
 npm run build:site                              # site/dist, served from /
 SITE_BASE=/seaglass-ui/ npm run build:site      # served from a subpath (e.g. GitHub Pages project site)
 npm run preview:site                            # serve the build locally (set SITE_BASE here too)
 ```
 
-`site/dist` is static files. Routes are real paths (`/components/button`), so the build also writes
-`404.html` as a copy of the app shell; GitHub Pages, Netlify, Cloudflare Pages and most static hosts
-serve it for unknown paths, and the client router takes over. Set `REPO_URL` in
-`site/src/content/nav.tsx` to show GitHub links once the repository is public.
+The build also writes `404.html` as a copy of the app shell, for static hosts that serve it for
+unknown paths.
 
 ## License
 
