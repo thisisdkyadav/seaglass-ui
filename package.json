@@ -30,11 +30,17 @@
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
-    "./styles.css": "./dist/seaglass.css"
+    "./styles.css": "./dist/seaglass.css",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
@@ -44,7 +50,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:types && npm run build:css",
     "build:js": "vite build",
-    "build:types": "tsc -p tsconfig.build.json",
+    "build:types": "tsc -p tsconfig.build.json && node scripts/fix-types.mjs",
     "build:css": "node scripts/build-css.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -53,7 +59,10 @@
     "preview:site": "vite preview --config site/vite.config.ts",
     "example:dashboard": "vite --config examples/dashboard/vite.config.ts",
     "prepublishOnly": "npm run typecheck && npm test && npm run build",
-    "deploy:site": "npm run build:site && wrangler deploy"
+    "deploy:site": "npm run build:site && wrangler deploy",
+    "lint:pkg": "publint && attw --pack . --exclude-entrypoints styles.css",
+    "changeset": "changeset",
+    "release": "npm run build && changeset publish"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -64,14 +73,18 @@
     "radix-ui": "^1.8.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@changesets/cli": "^3.0.3",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.8",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "axe-core": "^4.14.0",
     "jsdom": "^29.1.1",
     "lucide-react": "^1.40.0",
+    "publint": "^0.3.25",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "sugar-high": "^2.6.0",
@@ -82,5 +95,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

@@ -1,0 +1,16 @@
+name: Feature request
+description: A new component, prop or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you want to build?
+      description: The problem you are solving, not only the API you have in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API or behaviour
+      render: tsx

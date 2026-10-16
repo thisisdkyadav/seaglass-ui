@@ -1,0 +1,40 @@
+name: Release
+
+# On every push to main, Changesets either opens/updates a "Version packages" PR
+# (when there are pending changesets) or, once that PR is merged, publishes to npm
+# with provenance and creates the git tag and GitHub release.
+on:
+  push:
+    branches: [main]
+
+concurrency: release-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write # npm trusted publishing + provenance
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run typecheck && npm test
+      - uses: changesets/action@v1
+        with:
+          version: npx changeset version
+          publish: npm run release
+          title: "Version packages"
+          commit: "Version packages"
+          createGithubReleases: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Prefer npm trusted publishing (no secret needed). NPM_TOKEN is a fallback.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true

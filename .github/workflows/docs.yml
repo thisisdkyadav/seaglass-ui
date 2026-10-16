@@ -1,0 +1,32 @@
+name: Docs
+
+# Deploys the docs site to Cloudflare (https://seaglass.awacxo.com) when the
+# site or the library changes on main. Needs the CLOUDFLARE_API_TOKEN secret;
+# without it the deploy step is skipped.
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", "src/**", "wrangler.jsonc", "package.json"]
+  workflow_dispatch:
+
+concurrency: docs
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build:site
+      - name: Deploy
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: npx wrangler deploy
+      - name: Skipped
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "::notice::CLOUDFLARE_API_TOKEN is not set; skipping the docs deploy."

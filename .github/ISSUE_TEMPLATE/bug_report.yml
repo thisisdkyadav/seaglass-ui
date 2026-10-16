@@ -1,0 +1,31 @@
+name: Bug report
+description: Something looks or behaves wrong
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: A minimal code sample or a StackBlitz / CodeSandbox link.
+      render: tsx
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: seaglass-ui version
+      placeholder: "0.2.0"
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Browser, OS and React version
+      placeholder: "Chrome 141, macOS 26, React 19.2"
