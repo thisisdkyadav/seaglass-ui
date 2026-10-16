@@ -64,7 +64,8 @@
     "changeset": "changeset",
     "release": "npm run build && changeset publish",
     "test:e2e": "node tests/e2e/a11y.mjs",
-    "test:smoke": "node scripts/smoke.mjs"
+    "test:smoke": "node scripts/smoke.mjs",
+    "og-image": "node scripts/og-image.mjs"
   },
   "peerDependencies": {
     "react": ">=18",

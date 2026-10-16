@@ -2,6 +2,7 @@ import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
 import { copyFileSync } from "node:fs";
+import { seo } from "./seo";
 
 // Static hosts (GitHub Pages and friends) serve 404.html for unknown paths;
 // making it the app shell lets client-side routes work on reload.
@@ -17,7 +18,7 @@ const spaFallback = (): Plugin => ({
 export default defineConfig({
   root: fileURLToPath(new URL(".", import.meta.url)),
   base: process.env.SITE_BASE ?? "/",
-  plugins: [react(), spaFallback()],
+  plugins: [react(), spaFallback(), seo()],
   resolve: {
     alias: {
       "seaglass-ui/styles.css": fileURLToPath(new URL("../src/styles/index.css", import.meta.url)),

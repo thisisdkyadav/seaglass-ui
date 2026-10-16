@@ -15,9 +15,13 @@ export function App() {
   const entry = section === "components" && slug ? bySlug.get(slug) : undefined;
 
   const title = path === "/" ? null : doc?.title ?? entry?.name ?? (section === "components" && !slug ? "Components" : "Not found");
+  const description = doc?.summary ?? (entry ? `${entry.summary} React component, with live examples, API reference and keyboard support.` : null);
   useEffect(() => {
     document.title = title ? `${title} — Sea Glass UI` : "Sea Glass UI — frosted, accessible React components";
-  }, [title]);
+    // keep the tags the build wrote for this route in step during client-side navigation
+    if (description) document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://seaglass.awacxo.com" + path);
+  }, [title, description, path]);
 
   // scroll to #anchor after a page renders (deep links, reloads)
   useEffect(() => {
