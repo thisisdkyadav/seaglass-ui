@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { Direction } from "radix-ui";
+import { Direction, Tooltip } from "radix-ui";
 import { useMediaQuery } from "../hooks/use-media-query";
 import { useHotkeys } from "../hooks/use-hotkeys";
 
@@ -36,7 +36,8 @@ export interface ThemeProviderProps {
 
 /**
  * Sets data-sg-theme on <html>, adds .sg-root to <body> and renders the lamp
- * that lights the page in dark mode.
+ * that lights the page in dark mode. Also provides tooltip timing, so Tooltip needs no
+ * separate TooltipProvider.
  */
 export function ThemeProvider({
   children, defaultTheme = "system", theme: controlled, onThemeChange,
@@ -78,7 +79,10 @@ export function ThemeProvider({
   return (
     <Ctx.Provider value={value}>
       <div className="sg-lamp" aria-hidden />
-      {dir ? <Direction.Provider dir={dir}>{children}</Direction.Provider> : children}
+      {/* tooltips work without a separate TooltipProvider; one nested inside still wins */}
+      <Tooltip.Provider delayDuration={300}>
+        {dir ? <Direction.Provider dir={dir}>{children}</Direction.Provider> : children}
+      </Tooltip.Provider>
     </Ctx.Provider>
   );
 }

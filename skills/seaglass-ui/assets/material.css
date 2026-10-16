@@ -1,0 +1,142 @@
+/* ============================================================
+   The pebble material.  Any element with .sg-pebble becomes a
+   frosted, tumbled sea-glass stone, drawn on the element itself:
+
+     box-shadow   → cast shadow, down-right from a fixed top-left lamp
+     ::before     → the body: tinted, lit, uneven top, rounded rim
+     ::after      → crisp flecks on top of the body
+     children     → content, above both (the root is isolated)
+
+   Inputs:
+     data-tone    → tint (clear, periwinkle, aqua, seafoam, mint, lilac,
+                    coral, rose, amber, sand + primary/success/…)
+     data-depth   → sm | md | lg  (shadow length; default lg)
+     --sg-r       → corner radius
+   ============================================================ */
+
+.sg-pebble {
+  /* tint — clear milky stone unless a tone says otherwise */
+  --h: 220; --s: 14%; --l: 94%;
+  --lift: 0%;
+  /* light: fixed, up and to the left */
+  --sx: 3px; --sy: 9px; --blur: 11px;
+  --bx: 2px; --by: 4.5px;
+  --hx: 38%; --hy: 16%;
+  --sg-r: var(--sg-radius-lg);
+
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: var(--sg-r);
+  background: transparent;
+  color: hsl(var(--h) 42% 24%);
+  box-shadow:
+    var(--sx) var(--sy) var(--blur) calc(var(--blur) * -.35) hsl(var(--sg-shade) / var(--sg-shade-alpha)),
+    calc(var(--sx) * .5) calc(var(--sy) * .55) calc(var(--blur) * .8) calc(var(--blur) * -.3) hsl(var(--h) var(--s) 55% / .32);
+  transition: box-shadow var(--sg-dur) var(--sg-ease), transform var(--sg-dur) var(--sg-spring);
+}
+.sg-pebble::before,
+.sg-pebble::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+/* body */
+.sg-pebble::before {
+  inset: 0;
+  background:
+    /* uneven top: lit low-frequency noise, blended soft-light */
+    var(--sg-bumps) var(--bump, 0 0) / 480px 480px,
+    /* diffuse glow on the side facing the light */
+    radial-gradient(75% 90% at var(--hx) var(--hy), hsl(var(--h) var(--s) 97% / .6), transparent 70%),
+    /* cloudy, denser core */
+    radial-gradient(55% 65% at 50% 48%, hsl(var(--h) var(--s) calc(var(--l) + var(--lift) - 10%) / .55), transparent 80%),
+    /* body: light leaks out paler and slightly hue-shifted at the bottom */
+    linear-gradient(to bottom,
+      hsl(var(--h) var(--s) calc(var(--l) + var(--lift)) / .92),
+      hsl(var(--h) var(--s) calc(var(--l) + var(--lift) + 2%) / .9) 60%,
+      hsl(calc(var(--h) - 18) var(--s) calc(var(--l) + var(--lift) + 8%) / .94));
+  background-blend-mode: soft-light, normal, normal, normal;
+  box-shadow:
+    /* rounded rim: lit edge milky-bright, far edge rolls into deeper colour */
+    inset var(--bx) var(--by) 8px -2px hsl(var(--h) 100% 98% / .9),
+    inset calc(var(--bx) * -1.4) calc(var(--by) * -1.4) 10px -2px hsl(var(--h) var(--s) calc(var(--l) - 22%) / .5),
+    /* bright lip at the base */
+    inset 0 -3px 3px -2px hsl(calc(var(--h) - 18) 100% 96% / .9);
+  filter: blur(1.2px);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+}
+/* flecks */
+.sg-pebble::after {
+  inset: 2px;
+  background: var(--sg-fleck-light), var(--sg-fleck-dark);
+  background-size: 220px 220px;
+  background-position: var(--bump, 0 0);
+}
+
+/* neighbouring pebbles take different patches of the uneven-top texture */
+.sg-pebble:nth-child(2n) { --bump: 137px 211px; }
+.sg-pebble:nth-child(3n) { --bump: 274px 62px; }
+.sg-pebble:nth-child(5n) { --bump: 411px 273px; }
+
+/* depth: smaller pebbles cast shorter shadows and have thinner rims,
+   so everything appears to rest at the same height above the page */
+.sg-pebble[data-depth="md"] { --sx: 2.2px; --sy: 6px;   --blur: 8px;  --bx: 1.8px; --by: 3.6px; }
+.sg-pebble[data-depth="sm"] { --sx: 1.6px; --sy: 4.5px; --blur: 6px;  --bx: 1.4px; --by: 2.8px; }
+.sg-pebble[data-depth="xs"] { --sx: 1.1px; --sy: 3px;   --blur: 4px;  --bx: 1.1px; --by: 2.2px; }
+.sg-pebble[data-depth="sm"]::after, .sg-pebble[data-depth="xs"]::after { inset: 1px; }
+
+/* interactive pebbles lift on hover and sink when pressed */
+.sg-pebble[data-interactive] { cursor: pointer; }
+.sg-pebble[data-interactive]:hover:not(:disabled, [data-disabled]) { --lift: 1.5%; transform: translateY(-1px); }
+.sg-pebble[data-interactive]:active:not(:disabled, [data-disabled]) {
+  transform: translateY(1.5px) scale(.99);
+  --sx: 1px; --sy: 3px; --blur: 4px;
+  transition-duration: .08s;
+}
+.sg-pebble:is(:disabled, [data-disabled]) { opacity: .55; cursor: not-allowed; filter: saturate(.6); }
+
+/* ---------- tones ----------
+   Pale, sun-bleached sea-glass colours. Each is one h/s/l triple;
+   body, rim, core, lip, shadow and ink are derived from it. */
+[data-tone="clear"],    [data-tone="neutral"] { --h: 220; --s: 14%; --l: 94%; }
+[data-tone="periwinkle"], [data-tone="primary"] { --h: 234; --s: 80%; --l: 83%; }
+[data-tone="aqua"],     [data-tone="info"]    { --h: 186; --s: 62%; --l: 82%; }
+[data-tone="sky"]                             { --h: 205; --s: 70%; --l: 85%; }
+[data-tone="seafoam"]                         { --h: 165; --s: 52%; --l: 84%; }
+[data-tone="mint"],     [data-tone="success"] { --h: 140; --s: 52%; --l: 82%; }
+[data-tone="lilac"]                           { --h: 290; --s: 72%; --l: 86%; }
+[data-tone="coral"],    [data-tone="danger"]  { --h: 358; --s: 82%; --l: 85%; }
+[data-tone="rose"]                            { --h: 10;  --s: 90%; --l: 84%; }
+[data-tone="amber"],    [data-tone="warning"] { --h: 40;  --s: 92%; --l: 80%; }
+[data-tone="sand"]                            { --h: 34;  --s: 40%; --l: 86%; }
+
+/* clear stone reads better with neutral ink */
+.sg-pebble:is([data-tone="clear"], [data-tone="neutral"], :not([data-tone])) { color: #343a46; }
+[data-sg-theme="dark"] .sg-pebble:is([data-tone="clear"], [data-tone="neutral"], :not([data-tone])) { color: #3a3226; }
+/* the room light warms and slightly mutes every pebble */
+[data-sg-theme="dark"] .sg-pebble::before { filter: blur(1.2px) sepia(.1) brightness(.98); }
+
+/* ---------- textures (data URIs, shared) ---------- */
+:root {
+  --sg-bumps: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='b' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.005' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeDiffuseLighting surfaceScale='26' diffuseConstant='1' lighting-color='%23fff'%3E%3CfeDistantLight azimuth='225' elevation='42'/%3E%3C/feDiffuseLighting%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='.78' intercept='-.059'/%3E%3CfeFuncG type='linear' slope='.78' intercept='-.059'/%3E%3CfeFuncB type='linear' slope='.78' intercept='-.059'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23b%29'/%3E%3C/svg%3E");
+  --sg-fleck-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.45' numOctaves='1' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 8 0 0 0 -5.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --sg-fleck-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='1' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .28 0 0 0 0 .36 3 0 0 0 -2.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+
+/* ---------- supporting surfaces ---------- */
+
+/* A white chip resting inside a pebble: active / selected states */
+.sg-chip-surface {
+  background: var(--sg-chip);
+  box-shadow: var(--sg-chip-shadow);
+}
+
+/* A sunken well: inputs, search fields, tracks */
+.sg-well {
+  background: var(--sg-well);
+  box-shadow: var(--sg-well-shadow);
+}

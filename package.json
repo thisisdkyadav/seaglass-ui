@@ -44,6 +44,7 @@
   },
   "files": [
     "dist",
+    "skills",
     "LICENSE",
     "README.md"
   ],
@@ -64,7 +65,8 @@
     "changeset": "changeset",
     "test:e2e": "node tests/e2e/a11y.mjs",
     "test:smoke": "node scripts/smoke.mjs",
-    "og-image": "node scripts/og-image.mjs"
+    "og-image": "node scripts/og-image.mjs",
+    "build:skill": "npm run build:css && node scripts/build-skill.mjs"
   },
   "peerDependencies": {
     "react": ">=18",

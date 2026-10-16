@@ -22,6 +22,7 @@ Requires Node 20.19 or newer.
 | `tests` | Vitest + Testing Library, including an axe accessibility pass over every component. |
 | `site` | The docs site. `site/src/content/registry.ts` is the props reference; examples live in `site/src/examples/<component>/`. |
 | `examples/dashboard` | A full app built only from the library. |
+| `skills/seaglass-ui` | The agent skill. Edit `SKILL.md` by hand; `references/` and `assets/` are generated. |
 
 ## Before you open a pull request
 
@@ -33,7 +34,8 @@ npm run typecheck && npm test && npm run build && npm run lint:pkg
   patch / minor / major, and describe the change for users. Docs-only and test-only changes do not need one.
 - **Test the behaviour you add.** New components need an entry in `tests/a11y.test.tsx` and a
   keyboard test for anything interactive.
-- **Update the docs**: add or adjust examples and the props table in `registry.ts`.
+- **Update the docs**: add or adjust examples and the props table in `registry.ts`, then run
+  `npm run build:skill` so the agent skill picks them up (CI fails if it is stale).
 - **Check it by hand** in light and dark (Shift + D on the docs site), at phone width, and with the
   keyboard only.
 

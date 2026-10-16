@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import {
   Alert, Toggle, ToggleGroup, ToggleGroupItem, NumberInput, Field, ScrollArea, Text, Heading, Link, Stack, Grid,
-  ThemeProvider, Calendar, DirectionProvider, useDirection,
+  ThemeProvider, Calendar, DirectionProvider, useDirection, Tooltip, Button,
 } from "../src";
 
 describe("Alert", () => {
@@ -165,5 +165,12 @@ describe("right-to-left", () => {
     render(<><Show /><DirectionProvider dir="rtl"><Show /></DirectionProvider></>);
     expect(screen.getByText("ltr")).toBeInTheDocument();
     expect(screen.getByText("rtl")).toBeInTheDocument();
+  });
+});
+
+describe("ThemeProvider", () => {
+  it("provides tooltip timing, so Tooltip works without its own provider", () => {
+    render(<ThemeProvider storageKey={false}><Tooltip content="Edit"><Button>Hover</Button></Tooltip></ThemeProvider>);
+    expect(screen.getByRole("button", { name: "Hover" })).toBeInTheDocument();
   });
 });

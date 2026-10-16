@@ -28,6 +28,8 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: npm run lint:pkg
+      - name: Agent skill is up to date
+        run: node scripts/build-skill.mjs --check
       - name: Consumer smoke test
         run: npm run test:smoke
 

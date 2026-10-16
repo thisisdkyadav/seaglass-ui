@@ -343,6 +343,54 @@ useHotkeys(["j", "arrowdown"], next);
       </>
     ),
   },
+  {
+    slug: "ai-agents", title: "AI agents",
+    summary: "An agent skill that teaches Claude Code, Codex, OpenCode and Cursor to build in Sea Glass, in React or any other stack.",
+    toc: [{ id: "install", label: "Install the skill" }, { id: "harnesses", label: "Per harness" }, { id: "contents", label: "What it contains" }, { id: "llms", label: "llms.txt" }],
+    Body: () => (
+      <>
+        <p>
+          Coding agents tend to write their own components instead of using a library, and the Sea Glass material is
+          too subtle to guess from a screenshot. The <C>seaglass-ui</C> agent skill fixes both. It tells the agent to
+          use the library in React apps. In other stacks it gives the agent the framework-free stylesheet and the
+          exact markup of every component, so it can rebuild the look faithfully.
+        </p>
+        <H2 id="install">Install the skill</H2>
+        <p>The open <a href="https://skills.sh">skills</a> CLI installs it for whichever agents it finds in your project:</p>
+        <CodeBlock lang="sh" code={`npx skills add thisisdkyadav/seaglass-ui     # from GitHub
+npx skills add https://seaglass.awacxo.com   # or from this site`} />
+        <p className="site-muted">
+          Add <C>-g</C> to install it for your user instead of the project, <C>-a claude-code</C> (or <C>codex</C>,{" "}
+          <C>opencode</C>, <C>cursor</C>…) to pick the agent, and <C>-y</C> to skip the prompts.
+        </p>
+        <p>Then ask for it by name, for example: <i>"Build the settings page in the Sea Glass style."</i></p>
+        <H2 id="harnesses">Per harness</H2>
+        <p>The skill is a plain folder with a <C>SKILL.md</C>, so you can also copy it by hand. It also ships in the npm package, at <C>node_modules/seaglass-ui/skills/seaglass-ui</C>.</p>
+        <ul className="site-list">
+          <li><b>Claude Code</b>: <C>.claude/skills/seaglass-ui/</C> in the project, or <C>~/.claude/skills/seaglass-ui/</C> for every project.</li>
+          <li><b>Codex</b>: <C>.agents/skills/seaglass-ui/</C>, or <C>~/.agents/skills/seaglass-ui/</C>.</li>
+          <li><b>OpenCode</b>: <C>.agents/skills/seaglass-ui/</C>, or <C>~/.config/opencode/skills/seaglass-ui/</C>. It also reads <C>.claude/skills</C>.</li>
+          <li><b>Cursor</b>: <C>.agents/skills/seaglass-ui/</C>, or <C>~/.cursor/skills/seaglass-ui/</C>.</li>
+          <li><b>Anything else</b>: point the agent at <a href="/.well-known/skills/seaglass-ui/SKILL.md">SKILL.md</a> and let it follow the links.</li>
+        </ul>
+        <CodeBlock lang="sh" code={`# copy by hand from an installed package
+mkdir -p .claude/skills && cp -r node_modules/seaglass-ui/skills/seaglass-ui .claude/skills/`} />
+        <H2 id="contents">What it contains</H2>
+        <ul className="site-list">
+          <li><b>SKILL.md</b>: when to install the library and when to reuse the stylesheet, how to set up the theme, and the design rules to check every screen against.</li>
+          <li><b>references/design-language.md</b>: the material, light, colour and dark-mode principles.</li>
+          <li><b>references/components/*.md</b>: one page per component, with props, keyboard and accessibility notes, and every example from these docs as React source plus the HTML it renders.</li>
+          <li><b>assets/seaglass.css</b>, <b>tokens.css</b>, <b>material.css</b>: the stylesheet, which works with plain HTML.</li>
+        </ul>
+        <p>It is generated from the library on every release, so the props and markup always match the published version.</p>
+        <H2 id="llms">llms.txt</H2>
+        <p>
+          Agents that browse instead of installing can start from <a href="/llms.txt">/llms.txt</a>. It is a short map
+          of the skill, the design language, the stylesheet and every component page.
+        </p>
+      </>
+    ),
+  },
 ];
 
 export const docBySlug = new Map(docs.map((d) => [d.slug, d]));
