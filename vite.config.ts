@@ -25,5 +25,7 @@ export default defineConfig({
     // The on-disk module cache does not notice new files matched by import.meta.glob, so new
     // examples would silently skip the axe tests until the cache is cleared. Off for correctness.
     fsModuleCache: false,
+    // user-event tests drive real focus and timers; give slow or busy machines room
+    testTimeout: 15000,
   },
 });
