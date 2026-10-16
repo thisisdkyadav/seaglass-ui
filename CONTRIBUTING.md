@@ -47,5 +47,13 @@ npm run typecheck && npm test && npm run build && npm run lint:pkg
 
 ## Releases
 
-Maintainers merge the "Version packages" pull request that Changesets opens; CI then publishes to
-npm with provenance and creates the GitHub release.
+Releases are cut by hand by a maintainer:
+
+```bash
+npx changeset version          # bumps package.json and writes CHANGELOG.md from .changeset/*.md
+git commit -am "Release x.y.z"
+npm publish --otp=<code>       # prepublishOnly runs typecheck, tests and the build
+git push && git tag vx.y.z && git push --tags
+gh release create vx.y.z --notes-file <(the new CHANGELOG section)
+npm run deploy:site
+```

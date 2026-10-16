@@ -1,7 +1,7 @@
 {
   "name": "seaglass-ui",
   "version": "0.2.0",
-  "description": "Sea Glass — a React component library of frosted, tumbled-glass pebbles.",
+  "description": "Sea Glass \u2014 a React component library of frosted, tumbled-glass pebbles.",
   "keywords": [
     "react",
     "components",
@@ -62,7 +62,6 @@
     "deploy:site": "npm run build:site && wrangler deploy",
     "lint:pkg": "publint && attw --pack . --exclude-entrypoints styles.css",
     "changeset": "changeset",
-    "release": "npm run build && changeset publish",
     "test:e2e": "node tests/e2e/a11y.mjs",
     "test:smoke": "node scripts/smoke.mjs",
     "og-image": "node scripts/og-image.mjs"
