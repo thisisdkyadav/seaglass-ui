@@ -93,4 +93,6 @@ export function useTheme(): ThemeCtx {
 export const useDirection = (): "ltr" | "rtl" => Direction.useDirection();
 
 /** Set the direction for part of a page. Pair it with a dir attribute on an element: <DirectionProvider dir="rtl"><div dir="rtl">…</div></DirectionProvider> */
-export const DirectionProvider = Direction.Provider;
+export function DirectionProvider({ dir, children }: { dir: "ltr" | "rtl"; children?: ReactNode }) {
+  return <Direction.Provider dir={dir}>{children}</Direction.Provider>;
+}
