@@ -22,5 +22,8 @@ export default defineConfig({
     globals: true,
     setupFiles: ["tests/setup.ts"],
     css: false,
+    // The on-disk module cache does not notice new files matched by import.meta.glob, so new
+    // examples would silently skip the axe tests until the cache is cleared. Off for correctness.
+    fsModuleCache: false,
   },
 });
