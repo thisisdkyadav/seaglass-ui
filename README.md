@@ -74,8 +74,9 @@ Without either, the stack falls back to Google Sans, Roboto and then the system 
 | Group | Components |
 | --- | --- |
 | Foundation | `ThemeProvider` / `useTheme`, `Pebble`, tones, depths |
-| Primitives | `Button`, `IconButton`, `ButtonGroup`, `Badge`, `Count`, `Avatar`, `AvatarGroup`, `Card` (+ `Header/Body/Footer`), `Kbd`, `Separator`, `Skeleton`, `Progress`, `Spinner`, `EmptyState`, `VisuallyHidden` |
-| Forms | `Field` (wires label, description and error ids), `Label`, `Input`, `Textarea` (auto-resize), `Checkbox`, `RadioGroup`/`Radio`, `Switch`, `Slider`, `SegmentedControl`, `Select`, `Combobox` (single/multi, groups, create), `Calendar`, `DatePicker`, `DateRangePicker` |
+| Layout | `Stack`, `Grid` (responsive with `minColumnWidth`), `ScrollArea` |
+| Primitives | `Text`, `Heading`, `Link`, `Alert`, `Button`, `IconButton`, `ButtonGroup`, `Badge`, `Count`, `Avatar`, `AvatarGroup`, `Card` (+ `Header/Body/Footer`), `Kbd`, `Separator`, `Skeleton`, `Progress`, `Spinner`, `EmptyState`, `VisuallyHidden` |
+| Forms | `Field` (wires label, description and error ids), `Label`, `Input`, `Textarea` (auto-resize), `Checkbox`, `RadioGroup`/`Radio`, `Switch`, `Slider`, `NumberInput`, `Toggle`, `ToggleGroup`, `SegmentedControl`, `Select`, `Combobox` (single/multi, groups, create), `Calendar`, `DatePicker`, `DateRangePicker` |
 | Overlays | `Tooltip`, `Popover`, `HoverCard`, `DropdownMenu*`, `ContextMenu*` (icons, shortcuts, checkbox/radio items, sub-menus), `Dialog*`, `Sheet*`, `AlertDialog`, `toast()` + `Toaster`, `Command*`, `CommandPalette` |
 | Navigation | `Tabs` (pebble/chips/line), `Accordion`, `Collapsible`, `Breadcrumbs`, `Pagination`, `Sidebar*` |
 | Data | `Table`/`TR`/`TH`/`TD`, `DataTable` (sort, search, select, bulk actions, pagination), `Stat`, `Sparkline`, `BarChart` |

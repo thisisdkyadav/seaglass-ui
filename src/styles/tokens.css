@@ -15,9 +15,11 @@
   --sg-text-lg: 1rem;       /* 16px  large controls, card titles */
   --sg-text-xl: 1.125rem;   /* 18px  dialog titles */
   --sg-text-2xl: 1.5rem;    /* 24px  stat values */
+  --sg-text-3xl: 2rem;      /* 32px  page titles */
   --sg-leading: 1.5;
   --sg-weight-medium: 500;
   --sg-weight-strong: 600;
+  --sg-weight-bold: 700;
 
   /* spacing: a 4px grid */
   --sg-space-1: 4px;
@@ -27,6 +29,8 @@
   --sg-space-5: 20px;
   --sg-space-6: 24px;
   --sg-space-8: 32px;
+  --sg-space-10: 40px;
+  --sg-space-12: 48px;
 
   /* control heights: buttons, inputs, selects, segments share them */
   --sg-control-xs: 28px;

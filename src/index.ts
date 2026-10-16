@@ -13,18 +13,26 @@ export { useControllableState } from "./hooks/use-controllable-state";
 export { useMediaQuery } from "./hooks/use-media-query";
 export { usePersistedState } from "./hooks/use-persisted-state";
 
+// layout
+export { Stack, Grid, type StackProps, type GridProps, type Space } from "./components/layout";
+export { ScrollArea, type ScrollAreaProps } from "./components/scroll-area";
+
 // primitives
 export { Button, IconButton, ButtonGroup, type ButtonProps, type IconButtonProps, type ButtonGroupProps } from "./components/button";
 export { Badge, Count, type BadgeProps, type CountProps } from "./components/badge";
 export { Avatar, AvatarGroup, initials, type AvatarProps, type AvatarGroupProps } from "./components/avatar";
 export { Card, CardHeader, CardBody, CardFooter, type CardProps, type CardHeaderProps } from "./components/card";
 export { Spinner, type SpinnerProps } from "./components/spinner";
+export { Alert, type AlertProps } from "./components/alert";
+export { Toggle, ToggleGroup, ToggleGroupItem, type ToggleProps, type ToggleGroupProps, type ToggleGroupItemProps } from "./components/toggle";
+export { Text, Heading, Link, type TextProps, type HeadingProps, type TextLinkProps } from "./components/typography";
 export { Kbd, Separator, Skeleton, Progress, EmptyState, VisuallyHidden, type KbdProps, type SeparatorProps, type SkeletonProps, type ProgressProps, type EmptyStateProps } from "./components/misc";
 
 // forms
 export { Field, Label, Input, Textarea, useField, type FieldProps, type InputProps, type TextareaProps } from "./components/field";
 export { Checkbox, RadioGroup, Radio, Switch, type CheckboxProps, type RadioGroupProps, type RadioProps, type SwitchProps } from "./components/checkbox";
 export { Slider, type SliderProps } from "./components/slider";
+export { NumberInput, type NumberInputProps } from "./components/number-input";
 export { SegmentedControl, type SegmentedControlProps, type SegmentedOption } from "./components/segmented-control";
 export { Select, SelectItem, SelectSeparator, type SelectProps, type SelectOption, type SelectGroup } from "./components/select";
 export { Combobox, type ComboboxProps, type ComboboxOption } from "./components/combobox";

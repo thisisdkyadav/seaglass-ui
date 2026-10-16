@@ -16,6 +16,7 @@ export const ChevronsUpDown = (p: P) => <svg {...base(p)}><path d="M8 9l4-4 4 4M
 export const XIcon = (p: P) => <svg {...base(p)}><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" /></svg>;
 export const SearchIcon = (p: P) => <svg {...base(p)}><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4 4" /></svg>;
 export const MinusIcon = (p: P) => <svg {...base(p)}><path d="M6 12h12" /></svg>;
+export const PlusIcon = (p: P) => <svg {...base(p)}><path d="M12 6v12M6 12h12" /></svg>;
 export const DotIcon = (p: P) => <svg {...base(p)} fill="currentColor" stroke="none"><circle cx="12" cy="12" r="4" /></svg>;
 export const ArrowUp = (p: P) => <svg {...base(p)}><path d="M12 19V5M6 11l6-6 6 6" /></svg>;
 export const ArrowDown = (p: P) => <svg {...base(p)}><path d="M12 5v14M6 13l6 6 6-6" /></svg>;

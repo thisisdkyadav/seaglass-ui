@@ -19,7 +19,7 @@ export interface Entry {
   radix?: { name: string; url: string };
 }
 
-export const groups = ["Foundations", "Primitives", "Forms", "Overlays", "Navigation", "Data display", "Utilities"] as const;
+export const groups = ["Foundations", "Layout", "Primitives", "Forms", "Overlays", "Navigation", "Data display", "Utilities"] as const;
 export type Group = (typeof groups)[number];
 
 const TONE = `"clear" | "periwinkle" | "aqua" | "sky" | "seafoam" | "mint" | "lilac" | "coral" | "rose" | "amber" | "sand" | "primary" | "success" | "warning" | "danger" | "info" | "neutral"`;
@@ -80,6 +80,60 @@ export const registry: Entry[] = [
       },
     ],
     keyboard: [["Shift + D", "Toggle light / dark (configurable)"]],
+  },
+
+  // ───────────────────────── Layout
+  {
+    slug: "stack-grid", name: "Stack & Grid", group: "Layout",
+    summary: "Rows, columns and grids on the spacing scale, without writing CSS.",
+    description: "Numeric gaps map to the --sg-space-* scale (1 = 4px … 12 = 48px); any CSS length also works. Grid with minColumnWidth reflows by itself, so most layouts need no media queries.",
+    imports: `import { Stack, Grid } from "seaglass-ui";`,
+    examples: [
+      { id: "layout/stack", title: "Stack", description: "A column by default. Rows can wrap, and justify spreads them out." },
+      { id: "layout/grid", title: "Responsive grid", description: "As many 140px columns as fit." },
+    ],
+    api: [
+      {
+        name: "Stack", props: [
+          { name: "direction", type: `"column" | "row" | "column-reverse" | "row-reverse"`, default: `"column"`, description: "" },
+          { name: "gap", type: "Space", default: "3", description: "A step on the spacing scale (0–12) or any CSS length." },
+          { name: "align", type: `"start" | "center" | "end" | "stretch" | "baseline"`, description: "align-items" },
+          { name: "justify", type: `"start" | "center" | "end" | "between" | "around" | "evenly"`, description: "justify-content" },
+          { name: "wrap", type: "boolean", default: "false", description: "" },
+          { name: "asChild", type: "boolean", default: "false", description: "Style the child element instead of rendering a div." },
+          rest("HTMLAttributes<HTMLDivElement>"),
+        ],
+      },
+      {
+        name: "Grid", props: [
+          { name: "columns", type: "number | string", description: "A column count, or a grid-template-columns value." },
+          { name: "minColumnWidth", type: "number | string", description: "Fit as many columns of at least this width as there is room for." },
+          { name: "gap · rowGap", type: "Space", default: "4", description: "" },
+          { name: "align", type: `"start" | "center" | "end" | "stretch" | "baseline"`, description: "" },
+          { name: "asChild", type: "boolean", default: "false", description: "" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "scroll-area", name: "Scroll area", group: "Layout",
+    summary: "A scroll container with slim glass scrollbars that keep native scrolling.",
+    imports: `import { ScrollArea } from "seaglass-ui";`,
+    examples: [
+      { id: "scroll-area/basic", title: "Vertical" },
+      { id: "scroll-area/horizontal", title: "Horizontal" },
+    ],
+    api: [{
+      name: "ScrollArea", props: [
+        { name: "orientation", type: `"vertical" | "horizontal" | "both"`, default: `"vertical"`, description: "Which scrollbars to draw." },
+        { name: "maxHeight", type: "number | string", description: "Max height of the viewport." },
+        { name: "type", type: `"hover" | "scroll" | "auto" | "always"`, default: `"hover"`, description: "When the scrollbars show." },
+        { name: "aria-label", type: "string", description: "Makes the viewport a named region that keyboard users can focus and scroll." },
+      ],
+    }],
+    a11y: ["Scrolling stays native: wheel, touch, keyboard and screen readers work as usual.", "If the content has nothing focusable inside, pass aria-label so keyboard users can reach and scroll it."],
+    keyboard: [["↑ ↓ ← →", "Scroll (when the viewport is focused)"], ["PgUp / PgDn · Home / End", "Scroll by a page, to the start or end"]],
+    radix: radix("Scroll Area", "scroll-area"),
   },
 
   // ───────────────────────── Primitives
@@ -201,6 +255,66 @@ export const registry: Entry[] = [
         ],
       },
     ],
+  },
+  {
+    slug: "typography", name: "Text, Heading & Link", group: "Primitives",
+    summary: "Body text, headings and links on the type scale.",
+    description: "Heading separates the element (level) from the look (size), so the page outline stays correct whatever the design calls for. All three text colours meet WCAG AA contrast in both themes.",
+    imports: `import { Text, Heading, Link } from "seaglass-ui";`,
+    examples: [{ id: "typography/scale", title: "The type scale" }],
+    api: [
+      {
+        name: "Text", props: [
+          { name: "as", type: `"p" | "span" | "div" | "label" | "strong" | "em" | "small"`, default: `"p"`, description: "" },
+          { name: "size", type: `"2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"`, description: "Inherits when unset." },
+          { name: "color", type: `"default" | "muted" | "faint"`, default: `"default"`, description: "" },
+          { name: "weight", type: `"regular" | "medium" | "strong" | "bold"`, description: "" },
+          { name: "align", type: `"start" | "center" | "end"`, description: "Logical, so it flips in right-to-left layouts." },
+          { name: "truncate", type: "boolean | number", description: "true: one line with an ellipsis. A number clamps to that many lines." },
+          { name: "numeric", type: "boolean", description: "Tabular digits." },
+          { name: "asChild", type: "boolean", description: "" },
+        ],
+      },
+      {
+        name: "Heading", props: [
+          { name: "level", type: "1 | 2 | 3 | 4 | 5 | 6", default: "2", description: "The element, h1–h6." },
+          { name: "size", type: `"sm" | "md" | "lg" | "xl" | "2xl" | "3xl"`, description: "The look. Defaults to one that matches the level." },
+          { name: "align · asChild", type: "—", description: "" },
+        ],
+      },
+      {
+        name: "Link", props: [
+          tone(`"primary"`),
+          { name: "underline", type: `"always" | "hover" | "none"`, default: `"always"`, description: "Keep \"always\" inside prose, so links don't rely on colour alone." },
+          { name: "external", type: "boolean", description: "Opens in a new tab with rel=\"noopener noreferrer\"." },
+          { name: "asChild", type: "boolean", description: "Render your router's link: <Link asChild><RouterLink to=\"/\" /></Link>" },
+          rest("AnchorHTMLAttributes"),
+        ],
+      },
+    ],
+  },
+  {
+    slug: "alert", name: "Alert", group: "Primitives",
+    summary: "An inline message about the page or a section: info, success, warning or an error.",
+    imports: `import { Alert } from "seaglass-ui";`,
+    examples: [
+      { id: "alert/tones", title: "Tones", description: "Each tone picks a matching icon." },
+      { id: "alert/actions", title: "Actions and dismiss", description: "A raised pebble with buttons and a close button." },
+    ],
+    api: [{
+      name: "Alert", props: [
+        tone(`"info"`),
+        { name: "variant", type: `"soft" | "pebble"`, default: `"soft"`, description: "" },
+        { name: "title", type: "ReactNode", description: "" },
+        { name: "children", type: "ReactNode", description: "The message." },
+        { name: "icon", type: "ReactNode | false", description: "Replaces the tone's icon. false hides it." },
+        { name: "actions", type: "ReactNode", description: "Buttons under the message." },
+        { name: "onDismiss", type: "() => void", description: "Shows a close button." },
+        { name: "dismissLabel", type: "string", default: `"Dismiss"`, description: "" },
+        rest("HTMLAttributes<HTMLDivElement>"),
+      ],
+    }],
+    a11y: ["Static by default, so it is not announced on page load.", "When you insert an alert in response to something the user did, add role=\"alert\" (urgent) or role=\"status\" (polite) so screen readers announce it. For short-lived messages, use toast instead."],
   },
   {
     slug: "kbd", name: "Kbd", group: "Primitives",
@@ -387,6 +501,61 @@ export const registry: Entry[] = [
     }],
     keyboard: [["← →", "Step"], ["PgUp / PgDn", "Step × 10"], ["Home / End", "Min / max"]],
     radix: radix("Slider", "slider"),
+  },
+  {
+    slug: "number-input", name: "Number input", group: "Forms",
+    summary: "A numeric field with − and + steppers, keyboard stepping and locale-aware formatting.",
+    description: "Typing is free-form. The value is parsed, clamped to min and max and rounded to the step when the field loses focus or Enter is pressed. When not editing, the value is shown with format, e.g. as a currency.",
+    imports: `import { NumberInput } from "seaglass-ui";`,
+    examples: [{ id: "number-input/basic", title: "Basic, currency and percent" }],
+    api: [{
+      name: "NumberInput", props: [
+        { name: "value · defaultValue · onValueChange", type: "number | null", description: "null when the field is empty." },
+        { name: "min · max", type: "number", description: "" },
+        { name: "step", type: "number", default: "1", description: "Arrow keys and the buttons. Also sets the decimal places kept." },
+        { name: "largeStep", type: "number", default: "step × 10", description: "Shift + arrows, Page Up and Page Down." },
+        { name: "format", type: "Intl.NumberFormatOptions", description: "How the value is shown when not editing." },
+        { name: "locale", type: "string", description: "Formatting and parsing. Defaults to the browser's." },
+        { name: "name", type: "string", description: "Submits the raw number with forms." },
+        { name: "size · disabled · invalid · leading", type: "—", description: "As on Input." },
+        { name: "hideSteppers", type: "boolean", default: "false", description: "" },
+        { name: "incrementLabel · decrementLabel", type: "string", default: `"Increase" · "Decrease"`, description: "" },
+      ],
+    }],
+    keyboard: [["↑ / ↓", "Step up or down"], ["Shift + ↑ / ↓ · PgUp / PgDn", "Large step"], ["Home / End", "Minimum / maximum"], ["Enter", "Commit what you typed"]],
+    a11y: ["role=\"spinbutton\" with aria-valuenow, -min, -max and a formatted aria-valuetext.", "The − and + buttons are skipped by Tab; the arrow keys do the same job."],
+  },
+  {
+    slug: "toggle", name: "Toggle & Toggle group", group: "Forms",
+    summary: "Buttons that stay pressed, alone or in a group: bold, alignment, filters.",
+    imports: `import { Toggle, ToggleGroup, ToggleGroupItem } from "seaglass-ui";`,
+    examples: [
+      { id: "toggle/basic", title: "Toggle" },
+      { id: "toggle/group", title: "Toggle group", description: "multiple for independent options, single for one-of. A joined group sits in a well." },
+    ],
+    api: [
+      {
+        name: "Toggle", props: [
+          { name: "pressed · defaultPressed · onPressedChange", type: "boolean", description: "" },
+          { name: "variant", type: `"ghost" | "soft"`, default: `"ghost"`, description: "" },
+          tone(`"clear"`), { name: "size", type: SIZE, default: `"md"`, description: "" },
+          { name: "icon", type: "ReactNode", description: "Pass aria-label too when there is no text." },
+        ],
+      },
+      {
+        name: "ToggleGroup", props: [
+          { name: "type", type: `"single" | "multiple"`, required: true, description: "" },
+          { name: "value · defaultValue · onValueChange", type: "string | string[]", description: "string for single, string[] for multiple." },
+          { name: "layout", type: `"joined" | "separate"`, default: `"joined"`, description: "" },
+          { name: "variant · tone · size", type: "—", description: "Applied to every item." },
+          { name: "aria-label", type: "string", description: "Name the group." },
+        ],
+      },
+      { name: "ToggleGroupItem", props: [{ name: "value", type: "string", required: true, description: "" }, { name: "icon · disabled", type: "—", description: "" }] },
+    ],
+    keyboard: [["Space / Enter", "Press or release"], ["← → (group)", "Move between items"]],
+    a11y: ["Toggle sets aria-pressed. A single ToggleGroup uses radio semantics; a multiple one uses aria-pressed buttons."],
+    radix: radix("Toggle Group", "toggle-group"),
   },
   {
     slug: "segmented-control", name: "Segmented control", group: "Forms",

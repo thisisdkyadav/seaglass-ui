@@ -1,7 +1,7 @@
 import { Link } from "../router";
 import { groups, registry } from "../content/registry";
 
-const groupTone = { Foundations: "aqua", Primitives: "periwinkle", Forms: "mint", Overlays: "lilac", Navigation: "sky", "Data display": "amber", Utilities: "sand" } as const;
+const groupTone = { Foundations: "aqua", Layout: "seafoam", Primitives: "periwinkle", Forms: "mint", Overlays: "lilac", Navigation: "sky", "Data display": "amber", Utilities: "sand" } as const;
 
 export function ComponentGrid() {
   return (
